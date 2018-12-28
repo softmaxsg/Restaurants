@@ -7,10 +7,10 @@ import Foundation
 
 extension Restaurant {
     
-    static func random() -> Restaurant {
+    static func random(openingState: OpeningState = .random()) -> Restaurant {
         return Restaurant(
             name: .random(),
-            openingState: .random(),
+            openingState: openingState,
             sortingValues: .random()
         )
     }
