@@ -49,6 +49,7 @@
 		D899D31421D67A7000228761 /* RestaurantViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31321D67A7000228761 /* RestaurantViewModelTests.swift */; };
 		D899D31621D67E7600228761 /* SortingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31521D67E7600228761 /* SortingService.swift */; };
 		D899D31821D6841E00228761 /* SortingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31721D6841E00228761 /* SortingServiceTests.swift */; };
+		D899D31A21D68BA400228761 /* SortingServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31921D68BA400228761 /* SortingServiceMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		D899D31321D67A7000228761 /* RestaurantViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModelTests.swift; sourceTree = "<group>"; };
 		D899D31521D67E7600228761 /* SortingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingService.swift; sourceTree = "<group>"; };
 		D899D31721D6841E00228761 /* SortingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingServiceTests.swift; sourceTree = "<group>"; };
+		D899D31921D68BA400228761 /* SortingServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingServiceMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				D899D30D21D6516000228761 /* RestaurantsProviderMock.swift */,
+				D899D31921D68BA400228761 /* SortingServiceMock.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				D899D2E921D5892B00228761 /* RestaurantViewModel+Helpers.swift in Sources */,
 				D899D2D921D57A9900228761 /* String+Random.swift in Sources */,
 				D899D2CC21D568A200228761 /* RestaurantDecodingTests.swift in Sources */,
+				D899D31A21D68BA400228761 /* SortingServiceMock.swift in Sources */,
 				D899D2C721D5686200228761 /* JSONPresentable.swift in Sources */,
 				D899D2F321D5937D00228761 /* RestaurantsResponse+Helpers.swift in Sources */,
 				D899D2CE21D5690800228761 /* Restaurant+Helpers.swift in Sources */,

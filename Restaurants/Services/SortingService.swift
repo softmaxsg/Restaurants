@@ -4,7 +4,7 @@
 
 import Foundation
 
-enum SortingOption {
+enum SortingOption: CaseIterable {
     
     case bestMatch
     case newest

@@ -7,30 +7,45 @@ import XCTest
 
 final class RestaurantListViewModelTests: XCTestCase {
 
-    private let expectedRestaurants = Array(1...Int.random(in: 1...10)).map { _ in Restaurant.random() }
-    
+    private let initialRestaurants = Array(1...Int.random(in: 2...10)).map { _ in Restaurant.random() }
+
     func testAllItems() {
-        let viewModel = self.viewModel(with: .success(expectedRestaurants))
-        XCTAssertEqual(viewModel.itemsCount, expectedRestaurants.count)
-        
-        for (index, restaurant) in expectedRestaurants.enumerated() {
-            let item = try! viewModel.item(at: index)
-            XCTAssertTrue(item == restaurant)
+        var expectedRestaurants: [Restaurant]! = nil
+        let sortingService = SortingServiceMock { restaurants, _ in
+            expectedRestaurants = restaurants.shuffled()
+            return expectedRestaurants
         }
+        
+        let viewModel = self.viewModel(with: .success(initialRestaurants), sortingService: sortingService)
+        compareItems(in: viewModel, with: expectedRestaurants)
+    }
+    
+    func testChangingSortingOption() {
+        var expectedRestaurants: [Restaurant]! = nil
+        let sortingService = SortingServiceMock { restaurants, _ in
+            expectedRestaurants = restaurants.shuffled()
+            return expectedRestaurants
+        }
+        
+        let viewModel = self.viewModel(with: .success(initialRestaurants), sortingService: sortingService)
+        expectedRestaurants = nil
+        
+        viewModel.sortingOption = SortingOption.allCases.randomElement()!
+        compareItems(in: viewModel, with: expectedRestaurants)
     }
     
     func testEmptyList() {
         let viewModel = self.viewModel(with: .success([]))
-        XCTAssertEqual(viewModel.itemsCount, 0)
+        compareItems(in: viewModel, with: [])
     }
     
     func testLoadingFailed() {
         let viewModel = self.viewModel(with: .failure(MockError.some))
-        XCTAssertEqual(viewModel.itemsCount, 0)
+        compareItems(in: viewModel, with: [])
     }
 
     func testInvalidIndex() {
-        let viewModel = self.viewModel(with: .success(expectedRestaurants))
+        let viewModel = self.viewModel(with: .success(initialRestaurants))
 
         XCTAssertThrowsError(try viewModel.item(at: viewModel.itemsCount), "Has to throw an error") { error in
             XCTAssertEqual(error as? RandomAccessCollectionError, RandomAccessCollectionError.indexOutOfBounds)
@@ -50,22 +65,43 @@ extension RestaurantListViewModelTests {
         }
     }
     
-    private func viewModel(with result: Result<[Restaurant]>, file: StaticString = #file, line: UInt = #line) -> RestaurantListViewModel {
+    private func viewModel(with result: Result<[Restaurant]>, sortingService: SortingServiceProtocol? = nil, file: StaticString = #file, line: UInt = #line) -> RestaurantListViewModel {
         let expectation = self.expectation(description: "RestaurantListViewModel.loadRestaurants")
 
         let provider = mockedRestaurantsProvider(with: result)
         let delegate = RestaurantListViewModelDelegateMock(
-            itemsDidUpdate: { expectation.fulfill() },
+            itemsDidUpdate: {
+                switch result {
+                case .success: expectation.fulfill()
+                case .failure: XCTFail("Should be called in this test", file: file, line: line)
+                }
+            },
             itemsUpdateDidFail: { error in
-                XCTAssertEqual(error as? MockError, MockError.some, file: file, line: line)
-                expectation.fulfill()
+                switch result {
+                case .success: XCTFail("Should be called in this test", file: file, line: line)
+                case .failure: expectation.fulfill()
+                }
             }
         )
         
-        let viewModel = RestaurantListViewModel(delegate: delegate, restaurantsProvider: provider)
+        let viewModel = RestaurantListViewModel(
+            delegate: delegate,
+            restaurantsProvider: provider,
+            sortingService: sortingService ?? SortingServiceMock { restaurants, _ in restaurants.shuffled() }
+        )
+        
         viewModel.loadRestaurants()
-
         wait(for: [expectation], timeout: 1)
         return viewModel
     }
+    
+    private func compareItems(in viewModel: RestaurantListViewModel, with restaurants: [Restaurant], file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(viewModel.itemsCount, restaurants.count, file: file, line: line)
+        
+        for (index, restaurant) in restaurants.enumerated() {
+            let item = try! viewModel.item(at: index)
+            XCTAssertTrue(item == restaurant, file: file, line: line)
+        }
+    }
+    
 }

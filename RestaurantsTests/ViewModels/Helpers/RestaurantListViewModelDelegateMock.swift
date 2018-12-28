@@ -23,7 +23,7 @@ final class RestaurantListViewModelDelegateMock: RestaurantListViewModelDelegate
         itemsDidUpdateImpl()
     }
     
-    func itemsUpdateDidFail(with error: Error) {
+    func itemsLoadDidFail(with error: Error) {
         itemsUpdateDidFailImpl(error)
     }
 
