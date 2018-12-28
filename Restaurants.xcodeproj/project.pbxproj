@@ -50,6 +50,7 @@
 		D899D31621D67E7600228761 /* SortingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31521D67E7600228761 /* SortingService.swift */; };
 		D899D31821D6841E00228761 /* SortingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31721D6841E00228761 /* SortingServiceTests.swift */; };
 		D899D31A21D68BA400228761 /* SortingServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31921D68BA400228761 /* SortingServiceMock.swift */; };
+		D899D31D21D6C76000228761 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31C21D6C76000228761 /* ResultTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		D899D31521D67E7600228761 /* SortingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingService.swift; sourceTree = "<group>"; };
 		D899D31721D6841E00228761 /* SortingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingServiceTests.swift; sourceTree = "<group>"; };
 		D899D31921D68BA400228761 /* SortingServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingServiceMock.swift; sourceTree = "<group>"; };
+		D899D31C21D6C76000228761 /* ResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		D899D2A921D5182C00228761 /* RestaurantsTests */ = {
 			isa = PBXGroup;
 			children = (
+				D899D31B21D6C76000228761 /* Core */,
 				D899D2D721D57A8200228761 /* Helpers */,
 				D899D2C121D567A900228761 /* Models */,
 				D899D2EB21D58C0500228761 /* Services */,
@@ -319,6 +322,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D899D31B21D6C76000228761 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D899D31C21D6C76000228761 /* ResultTests.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -451,6 +462,7 @@
 				D899D2E921D5892B00228761 /* RestaurantViewModel+Helpers.swift in Sources */,
 				D899D2D921D57A9900228761 /* String+Random.swift in Sources */,
 				D899D2CC21D568A200228761 /* RestaurantDecodingTests.swift in Sources */,
+				D899D31D21D6C76000228761 /* ResultTests.swift in Sources */,
 				D899D31A21D68BA400228761 /* SortingServiceMock.swift in Sources */,
 				D899D2C721D5686200228761 /* JSONPresentable.swift in Sources */,
 				D899D2F321D5937D00228761 /* RestaurantsResponse+Helpers.swift in Sources */,
