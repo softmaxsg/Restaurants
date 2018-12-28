@@ -30,6 +30,20 @@
 		D899D2E121D582B500228761 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2E021D582B500228761 /* RestaurantViewModel.swift */; };
 		D899D2E421D583F400228761 /* RandomAccessCollection+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2E321D583F400228761 /* RandomAccessCollection+Helpers.swift */; };
 		D899D2E921D5892B00228761 /* RestaurantViewModel+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2E821D5892B00228761 /* RestaurantViewModel+Helpers.swift */; };
+		D899D2ED21D58C2C00228761 /* RestaurantsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2EC21D58C2C00228761 /* RestaurantsProvider.swift */; };
+		D899D2EF21D58C5C00228761 /* RestaurantsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2EE21D58C5C00228761 /* RestaurantsProviderTests.swift */; };
+		D899D2F121D5931500228761 /* RestaurantsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2F021D5931500228761 /* RestaurantsResponse.swift */; };
+		D899D2F321D5937D00228761 /* RestaurantsResponse+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2F221D5937D00228761 /* RestaurantsResponse+Helpers.swift */; };
+		D899D2F521D593F400228761 /* RestaurantsResponseDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2F421D593F400228761 /* RestaurantsResponseDecodingTests.swift */; };
+		D899D2F921D5955D00228761 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2F621D5955C00228761 /* Cancellable.swift */; };
+		D899D2FA21D5955D00228761 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2F721D5955D00228761 /* Result.swift */; };
+		D899D2FB21D5955D00228761 /* JSONDecoderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2F821D5955D00228761 /* JSONDecoderProtocol.swift */; };
+		D899D2FF21D596E600228761 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2FD21D596E600228761 /* URLSessionProtocol.swift */; };
+		D899D30021D596E600228761 /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D2FE21D596E600228761 /* URLSessionDataTaskProtocol.swift */; };
+		D899D30321D5980600228761 /* Restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = D899D30221D5980600228761 /* Restaurants.json */; };
+		D899D30521D5987F00228761 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D30421D5987F00228761 /* URLSessionMock.swift */; };
+		D899D30721D599A000228761 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D30621D599A000228761 /* Constants.swift */; };
+		D899D30A21D5AB4A00228761 /* JSONDecoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D30921D5AB4A00228761 /* JSONDecoderMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +84,20 @@
 		D899D2E021D582B500228761 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		D899D2E321D583F400228761 /* RandomAccessCollection+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Helpers.swift"; sourceTree = "<group>"; };
 		D899D2E821D5892B00228761 /* RestaurantViewModel+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantViewModel+Helpers.swift"; sourceTree = "<group>"; };
+		D899D2EC21D58C2C00228761 /* RestaurantsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsProvider.swift; sourceTree = "<group>"; };
+		D899D2EE21D58C5C00228761 /* RestaurantsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsProviderTests.swift; sourceTree = "<group>"; };
+		D899D2F021D5931500228761 /* RestaurantsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsResponse.swift; sourceTree = "<group>"; };
+		D899D2F221D5937D00228761 /* RestaurantsResponse+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantsResponse+Helpers.swift"; sourceTree = "<group>"; };
+		D899D2F421D593F400228761 /* RestaurantsResponseDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsResponseDecodingTests.swift; sourceTree = "<group>"; };
+		D899D2F621D5955C00228761 /* Cancellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
+		D899D2F721D5955D00228761 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		D899D2F821D5955D00228761 /* JSONDecoderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecoderProtocol.swift; sourceTree = "<group>"; };
+		D899D2FD21D596E600228761 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		D899D2FE21D596E600228761 /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
+		D899D30221D5980600228761 /* Restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Restaurants.json; sourceTree = "<group>"; };
+		D899D30421D5987F00228761 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		D899D30621D599A000228761 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D899D30921D5AB4A00228761 /* JSONDecoderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecoderMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +142,7 @@
 				D899D2E221D583B000228761 /* Core */,
 				D899D2BE21D5298E00228761 /* Helpers */,
 				D899D2B521D51EC100228761 /* Models */,
+				D899D2EA21D58BFC00228761 /* Services */,
 				D899D2DA21D5819A00228761 /* ViewModels */,
 				D899D29521D5182B00228761 /* AppDelegate.swift */,
 				D899D29C21D5182C00228761 /* Assets.xcassets */,
@@ -129,6 +158,7 @@
 			children = (
 				D899D2D721D57A8200228761 /* Helpers */,
 				D899D2C121D567A900228761 /* Models */,
+				D899D2EB21D58C0500228761 /* Services */,
 				D899D2DD21D581C900228761 /* ViewModels */,
 				D899D2AC21D5182D00228761 /* Info.plist */,
 			);
@@ -138,9 +168,10 @@
 		D899D2B521D51EC100228761 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D899D2B621D51EDE00228761 /* Restaurant.swift */,
 				D899D2B821D5215A00228761 /* OpeningState.swift */,
+				D899D2B621D51EDE00228761 /* Restaurant.swift */,
 				D899D2BC21D5220300228761 /* SortingValues.swift */,
+				D899D2F021D5931500228761 /* RestaurantsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -158,6 +189,7 @@
 			children = (
 				D899D2C221D567F100228761 /* Helpers */,
 				D899D2CB21D568A200228761 /* RestaurantDecodingTests.swift */,
+				D899D2F421D593F400228761 /* RestaurantsResponseDecodingTests.swift */,
 				D899D2D521D5719100228761 /* SortingValuesDecodingTests.swift */,
 			);
 			path = Models;
@@ -172,6 +204,7 @@
 				D899D2C321D5686200228761 /* JSONPresentable.swift */,
 				D899D2D321D56B3A00228761 /* OpeningState+Helpers.swift */,
 				D899D2CD21D5690800228761 /* Restaurant+Helpers.swift */,
+				D899D2F221D5937D00228761 /* RestaurantsResponse+Helpers.swift */,
 				D899D2D121D569D600228761 /* SortingValues+Helpers.swift */,
 			);
 			path = Helpers;
@@ -206,7 +239,11 @@
 		D899D2E221D583B000228761 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D899D2F621D5955C00228761 /* Cancellable.swift */,
+				D899D30621D599A000228761 /* Constants.swift */,
+				D899D2F821D5955D00228761 /* JSONDecoderProtocol.swift */,
 				D899D2E321D583F400228761 /* RandomAccessCollection+Helpers.swift */,
+				D899D2F721D5955D00228761 /* Result.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -215,6 +252,51 @@
 			isa = PBXGroup;
 			children = (
 				D899D2E821D5892B00228761 /* RestaurantViewModel+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D899D2EA21D58BFC00228761 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D899D2FC21D596E600228761 /* Networking */,
+				D899D2EC21D58C2C00228761 /* RestaurantsProvider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D899D2EB21D58C0500228761 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D899D30821D5AB2200228761 /* Helpers */,
+				D899D2EE21D58C5C00228761 /* RestaurantsProviderTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D899D2FC21D596E600228761 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D899D30121D597D500228761 /* Mocks */,
+				D899D2FD21D596E600228761 /* URLSessionProtocol.swift */,
+				D899D2FE21D596E600228761 /* URLSessionDataTaskProtocol.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		D899D30121D597D500228761 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D899D30221D5980600228761 /* Restaurants.json */,
+				D899D30421D5987F00228761 /* URLSessionMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		D899D30821D5AB2200228761 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D899D30921D5AB4A00228761 /* JSONDecoderMock.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -301,6 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D899D30321D5980600228761 /* Restaurants.json in Resources */,
 				D899D2A021D5182C00228761 /* LaunchScreen.storyboard in Resources */,
 				D899D29D21D5182C00228761 /* Assets.xcassets in Resources */,
 				D899D29B21D5182B00228761 /* Main.storyboard in Resources */,
@@ -321,14 +404,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D899D2FF21D596E600228761 /* URLSessionProtocol.swift in Sources */,
+				D899D30721D599A000228761 /* Constants.swift in Sources */,
 				D899D2C021D5299E00228761 /* Decimal+Money.swift in Sources */,
 				D899D2DC21D581C200228761 /* RestaurantListViewModel.swift in Sources */,
 				D899D2B721D51EDE00228761 /* Restaurant.swift in Sources */,
+				D899D2ED21D58C2C00228761 /* RestaurantsProvider.swift in Sources */,
+				D899D2FB21D5955D00228761 /* JSONDecoderProtocol.swift in Sources */,
 				D899D29621D5182B00228761 /* AppDelegate.swift in Sources */,
+				D899D2F121D5931500228761 /* RestaurantsResponse.swift in Sources */,
+				D899D2FA21D5955D00228761 /* Result.swift in Sources */,
 				D899D2E421D583F400228761 /* RandomAccessCollection+Helpers.swift in Sources */,
+				D899D2F921D5955D00228761 /* Cancellable.swift in Sources */,
 				D899D2BD21D5220300228761 /* SortingValues.swift in Sources */,
 				D899D2B921D5215A00228761 /* OpeningState.swift in Sources */,
 				D899D2E121D582B500228761 /* RestaurantViewModel.swift in Sources */,
+				D899D30521D5987F00228761 /* URLSessionMock.swift in Sources */,
+				D899D30021D596E600228761 /* URLSessionDataTaskProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,11 +433,15 @@
 				D899D2D921D57A9900228761 /* String+Random.swift in Sources */,
 				D899D2CC21D568A200228761 /* RestaurantDecodingTests.swift in Sources */,
 				D899D2C721D5686200228761 /* JSONPresentable.swift in Sources */,
+				D899D2F321D5937D00228761 /* RestaurantsResponse+Helpers.swift in Sources */,
 				D899D2CE21D5690800228761 /* Restaurant+Helpers.swift in Sources */,
 				D899D2D221D569D600228761 /* SortingValues+Helpers.swift in Sources */,
 				D899D2DF21D581EE00228761 /* RestaurantListViewModelTests.swift in Sources */,
 				D899D2D421D56B3A00228761 /* OpeningState+Helpers.swift in Sources */,
+				D899D30A21D5AB4A00228761 /* JSONDecoderMock.swift in Sources */,
+				D899D2F521D593F400228761 /* RestaurantsResponseDecodingTests.swift in Sources */,
 				D899D2C821D5686200228761 /* DecodingTester.swift in Sources */,
+				D899D2EF21D58C5C00228761 /* RestaurantsProviderTests.swift in Sources */,
 				D899D2CA21D5686200228761 /* JSONDecoder+Helpers.swift in Sources */,
 				D899D2C921D5686200228761 /* Dictionary+Helpers.swift in Sources */,
 			);
