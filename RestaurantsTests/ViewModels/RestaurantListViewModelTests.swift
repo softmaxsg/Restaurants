@@ -20,9 +20,19 @@ final class RestaurantListViewModelTests: XCTestCase {
         compareItems(in: viewModel, with: expectedRestaurants)
     }
     
-    func testChangingSortingOption() {
+    func testSorting() {
+        let expectedSortingOption = SortingOption.allCases.randomElement()!
         var expectedRestaurants: [Restaurant]! = nil
-        let sortingService = SortingServiceMock { restaurants, _ in
+        
+        var sortingServiceCalls = 0
+        let sortingService = SortingServiceMock { restaurants, option in
+            sortingServiceCalls += 1
+            switch sortingServiceCalls {
+            case 1: XCTAssertEqual(option, SortingOption.bestMatch)
+            case 2: XCTAssertEqual(option, expectedSortingOption)
+            default: XCTFail("Called too many times")
+            }
+            
             expectedRestaurants = restaurants.shuffled()
             return expectedRestaurants
         }
@@ -30,7 +40,31 @@ final class RestaurantListViewModelTests: XCTestCase {
         let viewModel = self.viewModel(with: .success(initialRestaurants), sortingService: sortingService)
         expectedRestaurants = nil
         
-        viewModel.sortingOption = SortingOption.allCases.randomElement()!
+        viewModel.sortingOption = expectedSortingOption
+        compareItems(in: viewModel, with: expectedRestaurants)
+    }
+    
+    func testFiltering() {
+        let expectedFilteringText = String.random()
+        var expectedRestaurants: [Restaurant]! = nil
+        
+        var filteringServiceCalls = 0
+        let filteringService = FilteringServiceMock { restaurants, text in
+            filteringServiceCalls += 1
+            switch filteringServiceCalls {
+            case 1: XCTAssertTrue(text.isEmpty)
+            case 2: XCTAssertEqual(text, expectedFilteringText)
+            default: XCTFail("Called too many times")
+            }
+
+            expectedRestaurants = restaurants.filter { _ in .random() }
+            return expectedRestaurants
+        }
+        
+        let viewModel = self.viewModel(with: .success(initialRestaurants), filteringService: filteringService)
+        expectedRestaurants = nil
+        
+        viewModel.filteringText = expectedFilteringText
         compareItems(in: viewModel, with: expectedRestaurants)
     }
     
@@ -65,7 +99,7 @@ extension RestaurantListViewModelTests {
         }
     }
     
-    private func viewModel(with result: Result<[Restaurant]>, sortingService: SortingServiceProtocol? = nil, file: StaticString = #file, line: UInt = #line) -> RestaurantListViewModel {
+    private func viewModel(with result: Result<[Restaurant]>, sortingService: SortingServiceProtocol? = nil, filteringService: FilteringServiceProtocol? = nil, file: StaticString = #file, line: UInt = #line) -> RestaurantListViewModel {
         let expectation = self.expectation(description: "RestaurantListViewModel.loadRestaurants")
 
         let provider = mockedRestaurantsProvider(with: result)
@@ -87,7 +121,8 @@ extension RestaurantListViewModelTests {
         let viewModel = RestaurantListViewModel(
             delegate: delegate,
             restaurantsProvider: provider,
-            sortingService: sortingService ?? SortingServiceMock { restaurants, _ in restaurants.shuffled() }
+            sortingService: sortingService ?? SortingServiceMock { restaurants, _ in restaurants },
+            filteringService: filteringService ?? FilteringServiceMock { restaurants, _ in restaurants }
         )
         
         viewModel.loadRestaurants()

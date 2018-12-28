@@ -14,6 +14,7 @@ protocol RestaurantListViewModelDelegate: class {
 protocol RestaurantListViewModelProtocol {
     
     var sortingOption: SortingOption { get set }
+    var filteringText: String { get set }
     
     var itemsCount: Int { get }
     func item(at index: Int) throws -> RestaurantViewModelProtocol
@@ -27,19 +28,23 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
     
     private let restaurantsProvider: RestaurantsProviderProtocol
     private let sortingService: SortingServiceProtocol
+    private let filteringService: FilteringServiceProtocol
     
-    private var restaurants: [Restaurant] = [] { didSet { updateItems(with: restaurants) } }
+    private var restaurants: [Restaurant] = [] { didSet { updateItems() } }
     private var items: [RestaurantViewModelProtocol] = []
 
     init(delegate: RestaurantListViewModelDelegate,
          restaurantsProvider: RestaurantsProviderProtocol,
-         sortingService: SortingServiceProtocol) {
+         sortingService: SortingServiceProtocol,
+         filteringService: FilteringServiceProtocol) {
         self.delegate = delegate
         self.restaurantsProvider = restaurantsProvider
         self.sortingService = sortingService
+        self.filteringService = filteringService
     }
 
-    var sortingOption: SortingOption = .bestMatch { didSet { updateItems(with: restaurants) } }
+    var sortingOption: SortingOption = .bestMatch { didSet { updateItems() } }
+    var filteringText: String = "" { didSet { updateItems() } }
     
     var itemsCount: Int { return items.count }
     
@@ -65,8 +70,10 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
 
 extension RestaurantListViewModel {
 
-    private func updateItems(with restaurants: [Restaurant]) {
-        items = sortingService.sorted(restaurants, option: sortingOption).map(RestaurantViewModel.init)
+    private func updateItems() {
+        let filteredRestaurants = filteringService.filtered(restaurants, using: filteringText)
+        let sortedRestaurants = sortingService.sorted(filteredRestaurants, option: sortingOption)
+        items = sortedRestaurants.map(RestaurantViewModel.init)        
         delegate?.itemsDidUpdate()
     }
     

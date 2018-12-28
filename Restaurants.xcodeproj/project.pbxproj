@@ -53,6 +53,7 @@
 		D899D31D21D6C76000228761 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31C21D6C76000228761 /* ResultTests.swift */; };
 		D899D31F21D6C81200228761 /* FilteringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31E21D6C81200228761 /* FilteringService.swift */; };
 		D899D32121D6C9DC00228761 /* FilteredServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */; };
+		D899D32321D6D0C600228761 /* FilteringServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D32221D6D0C600228761 /* FilteringServiceMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		D899D31C21D6C76000228761 /* ResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		D899D31E21D6C81200228761 /* FilteringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringService.swift; sourceTree = "<group>"; };
 		D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredServiceTests.swift; sourceTree = "<group>"; };
+		D899D32221D6D0C600228761 /* FilteringServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringServiceMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +191,8 @@
 			children = (
 				D899D2B821D5215A00228761 /* OpeningState.swift */,
 				D899D2B621D51EDE00228761 /* Restaurant.swift */,
-				D899D2BC21D5220300228761 /* SortingValues.swift */,
 				D899D2F021D5931500228761 /* RestaurantsResponse.swift */,
+				D899D2BC21D5220300228761 /* SortingValues.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -293,9 +295,9 @@
 			isa = PBXGroup;
 			children = (
 				D899D30821D5AB2200228761 /* Helpers */,
+				D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */,
 				D899D2EE21D58C5C00228761 /* RestaurantsProviderTests.swift */,
 				D899D31721D6841E00228761 /* SortingServiceTests.swift */,
-				D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -322,6 +324,7 @@
 		D899D30821D5AB2200228761 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D899D32221D6D0C600228761 /* FilteringServiceMock.swift */,
 				D899D30D21D6516000228761 /* RestaurantsProviderMock.swift */,
 				D899D31921D68BA400228761 /* SortingServiceMock.swift */,
 			);
@@ -469,6 +472,7 @@
 				D899D2E921D5892B00228761 /* RestaurantViewModel+Helpers.swift in Sources */,
 				D899D2D921D57A9900228761 /* String+Random.swift in Sources */,
 				D899D2CC21D568A200228761 /* RestaurantDecodingTests.swift in Sources */,
+				D899D32321D6D0C600228761 /* FilteringServiceMock.swift in Sources */,
 				D899D31D21D6C76000228761 /* ResultTests.swift in Sources */,
 				D899D31A21D68BA400228761 /* SortingServiceMock.swift in Sources */,
 				D899D2C721D5686200228761 /* JSONPresentable.swift in Sources */,
