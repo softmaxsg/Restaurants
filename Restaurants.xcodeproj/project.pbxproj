@@ -51,6 +51,8 @@
 		D899D31821D6841E00228761 /* SortingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31721D6841E00228761 /* SortingServiceTests.swift */; };
 		D899D31A21D68BA400228761 /* SortingServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31921D68BA400228761 /* SortingServiceMock.swift */; };
 		D899D31D21D6C76000228761 /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31C21D6C76000228761 /* ResultTests.swift */; };
+		D899D31F21D6C81200228761 /* FilteringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D31E21D6C81200228761 /* FilteringService.swift */; };
+		D899D32121D6C9DC00228761 /* FilteredServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		D899D31721D6841E00228761 /* SortingServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingServiceTests.swift; sourceTree = "<group>"; };
 		D899D31921D68BA400228761 /* SortingServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingServiceMock.swift; sourceTree = "<group>"; };
 		D899D31C21D6C76000228761 /* ResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
+		D899D31E21D6C81200228761 /* FilteringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringService.swift; sourceTree = "<group>"; };
+		D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +284,7 @@
 				D899D2FC21D596E600228761 /* Networking */,
 				D899D2EC21D58C2C00228761 /* RestaurantsProvider.swift */,
 				D899D31521D67E7600228761 /* SortingService.swift */,
+				D899D31E21D6C81200228761 /* FilteringService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				D899D30821D5AB2200228761 /* Helpers */,
 				D899D2EE21D58C5C00228761 /* RestaurantsProviderTests.swift */,
 				D899D31721D6841E00228761 /* SortingServiceTests.swift */,
+				D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				D899D2ED21D58C2C00228761 /* RestaurantsProvider.swift in Sources */,
 				D899D2FB21D5955D00228761 /* JSONDecoderProtocol.swift in Sources */,
 				D899D29621D5182B00228761 /* AppDelegate.swift in Sources */,
+				D899D31F21D6C81200228761 /* FilteringService.swift in Sources */,
 				D899D2F121D5931500228761 /* RestaurantsResponse.swift in Sources */,
 				D899D2FA21D5955D00228761 /* Result.swift in Sources */,
 				D899D2E421D583F400228761 /* RandomAccessCollection+Helpers.swift in Sources */,
@@ -473,6 +480,7 @@
 				D899D31021D65E0D00228761 /* RestaurantListViewModelDelegateMock.swift in Sources */,
 				D899D30A21D5AB4A00228761 /* JSONDecoderMock.swift in Sources */,
 				D899D31421D67A7000228761 /* RestaurantViewModelTests.swift in Sources */,
+				D899D32121D6C9DC00228761 /* FilteredServiceTests.swift in Sources */,
 				D899D2F521D593F400228761 /* RestaurantsResponseDecodingTests.swift in Sources */,
 				D899D31821D6841E00228761 /* SortingServiceTests.swift in Sources */,
 				D899D30E21D6516000228761 /* RestaurantsProviderMock.swift in Sources */,
