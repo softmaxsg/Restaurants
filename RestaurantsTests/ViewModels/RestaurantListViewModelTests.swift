@@ -248,7 +248,7 @@ extension RestaurantListViewModelTests {
         
         for (index, restaurant) in restaurants.enumerated() {
             let item = try! viewModel.item(at: index)
-            XCTAssertTrue(item == restaurant, "RestaurantViewModel at index \(index) does not match corresponding Restaurant objct", file: file, line: line)
+            XCTAssertTrue(item.isEqual(to: restaurant, sorting: viewModel.sortingOption), "RestaurantViewModel at index \(index) does not match corresponding Restaurant objct", file: file, line: line)
         }
     }
 

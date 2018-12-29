@@ -9,14 +9,16 @@ final class RestaurantViewModelTests: XCTestCase {
 
     func testInitialization() {
         let restaurant = Restaurant.random()
-        let viewModel = RestaurantViewModel(restaurant) { }
-        XCTAssertTrue(viewModel == restaurant)
+        for option in SortingOption.allCases {
+            let viewModel = RestaurantViewModel(restaurant, sorting: option) { }
+            XCTAssertTrue(viewModel.isEqual(to: restaurant, sorting: option))
+        }
     }
 
     func testToggleFavoriteState() {
         let expectation = self.expectation(description: "toggleFavoriteStateCallback")
 
-        let viewModel = RestaurantViewModel(Restaurant.random()) {
+        let viewModel = RestaurantViewModel(Restaurant.random(), sorting: .random()) {
             expectation.fulfill()
         }
         

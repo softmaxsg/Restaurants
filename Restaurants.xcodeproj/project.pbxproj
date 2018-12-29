@@ -67,6 +67,7 @@
 		D899D33921D7F98800228761 /* FavoritesStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33821D7F98800228761 /* FavoritesStorageService.swift */; };
 		D899D33B21D7FD6200228761 /* FavoritesStorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33A21D7FD6200228761 /* FavoritesStorageServiceTests.swift */; };
 		D899D33D21D7FE9A00228761 /* FavoritesStorageServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33C21D7FE9A00228761 /* FavoritesStorageServiceMock.swift */; };
+		D899D34521D8138D00228761 /* SortingOption+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D34421D8138D00228761 /* SortingOption+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,7 @@
 		D899D33821D7F98800228761 /* FavoritesStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorageService.swift; sourceTree = "<group>"; };
 		D899D33A21D7FD6200228761 /* FavoritesStorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorageServiceTests.swift; sourceTree = "<group>"; };
 		D899D33C21D7FE9A00228761 /* FavoritesStorageServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorageServiceMock.swift; sourceTree = "<group>"; };
+		D899D34421D8138D00228761 /* SortingOption+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SortingOption+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 			children = (
 				D899D30F21D65E0D00228761 /* RestaurantListViewModelDelegateMock.swift */,
 				D899D2E821D5892B00228761 /* RestaurantViewModel+Helpers.swift */,
+				D899D34421D8138D00228761 /* SortingOption+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				D899D32B21D6DB0000228761 /* JSONEncoder+Helpers.swift in Sources */,
 				D899D2CC21D568A200228761 /* RestaurantDetailsDecodingTests.swift in Sources */,
 				D899D32321D6D0C600228761 /* FilteringServiceMock.swift in Sources */,
+				D899D34521D8138D00228761 /* SortingOption+Helpers.swift in Sources */,
 				D899D31D21D6C76000228761 /* ResultTests.swift in Sources */,
 				D899D31A21D68BA400228761 /* SortingServiceMock.swift in Sources */,
 				D899D2C721D5686200228761 /* JSONPresentable.swift in Sources */,

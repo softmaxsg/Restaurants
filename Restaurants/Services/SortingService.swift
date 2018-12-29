@@ -4,16 +4,16 @@
 
 import Foundation
 
-enum SortingOption: CaseIterable {
+enum SortingOption: String, CaseIterable {
     
-    case bestMatch
-    case newest
-    case averageRating
-    case distance
-    case popularity
-    case averageProductPrice
-    case deliveryCost
-    case minimalCost
+    case bestMatch = "Best Match"
+    case newest = "Newest"
+    case averageRating = "Rating"
+    case distance = "Distance"
+    case popularity = "Popularity"
+    case averageProductPrice = "Average Price"
+    case deliveryCost = "Delivery"
+    case minimalCost = "Minimal Order"
 
 }
 
