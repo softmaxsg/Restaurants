@@ -38,12 +38,13 @@ final class FavoritesService: FavoritesServiceProtocol {
         
     }
     
-    private var delegates: [DelegateWrapper] = []
-    private var favorites: [FavoriteRestaurant]
+    private let storageService: FavoritesStorageServiceProtocol
     
-    // For testing purpose
-    init(initial favorites: [FavoriteRestaurant] = []) {
-        self.favorites = favorites
+    private var delegates: [DelegateWrapper] = []
+    private(set) lazy var favorites: [FavoriteRestaurant] = storageService.loadAll()
+    
+    init(storageService: FavoritesStorageServiceProtocol) {
+        self.storageService = storageService
     }
     
     func isRestaurantFavorite(with name: String) -> Bool {
@@ -53,12 +54,14 @@ final class FavoritesService: FavoritesServiceProtocol {
     func addRestaurant(with name: String) throws {
         guard !favorites.contains(where: { $0.name == name }) else { throw FavoritesServiceError.alreadyExists }
         favorites.append(FavoriteRestaurant(name: name))
+        storageService.saveAll(favorites)
         delegates.forEach { $0.delegate?.favoriteRestaurantAdded(with: name) }
     }
     
     func removeRestaurant(with name: String) throws {
         guard let index = favorites.firstIndex(where: { $0.name == name }) else { throw FavoritesServiceError.notFound }
         favorites.remove(at: index)
+        storageService.saveAll(favorites)
         delegates.forEach { $0.delegate?.favoriteRestaurantRemoved(with: name) }
     }
     

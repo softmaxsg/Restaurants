@@ -10,35 +10,45 @@ final class FavoritesServiceTests: XCTestCase {
     private let restaurant = FavoriteRestaurant.random()
     
     func testAddRestaurant() {
-        let service = FavoritesService(initial: [])
+        let storageService = FavoritesStorageServiceMock(initial: [])
+        let service = FavoritesService(storageService: storageService)
         XCTAssertFalse(service.isRestaurantFavorite(with: restaurant.name))
 
         try! service.addRestaurant(with: restaurant.name)
         XCTAssertTrue(service.isRestaurantFavorite(with: restaurant.name))
+        XCTAssertEqual(storageService.restaurants, [restaurant])
     }
     
     func testAddRestaurantFailed() {
-        let service = FavoritesService(initial: [restaurant])
+        let storageService = FavoritesStorageServiceMock(initial: [restaurant])
+        let service = FavoritesService(storageService: storageService)
 
         XCTAssertThrowsError(try service.addRestaurant(with: restaurant.name), "Has to throw an error") { error in
             XCTAssertEqual(error as? FavoritesServiceError, FavoritesServiceError.alreadyExists)
         }
+
+        XCTAssertEqual(storageService.restaurants, [restaurant])
     }
 
     func testRemoveRestaurant() {
-        let service = FavoritesService(initial: [restaurant])
+        let storageService = FavoritesStorageServiceMock(initial: [restaurant])
+        let service = FavoritesService(storageService: storageService)
         XCTAssertTrue(service.isRestaurantFavorite(with: restaurant.name))
         
         try! service.removeRestaurant(with: restaurant.name)
         XCTAssertFalse(service.isRestaurantFavorite(with: restaurant.name))
+        XCTAssertEqual(storageService.restaurants, [])
     }
     
     func testRemoveRestaurantFailed() {
-        let service = FavoritesService(initial: [])
+        let storageService = FavoritesStorageServiceMock(initial: [])
+        let service = FavoritesService(storageService: storageService)
         
         XCTAssertThrowsError(try service.removeRestaurant(with: restaurant.name), "Has to throw an error") { error in
             XCTAssertEqual(error as? FavoritesServiceError, FavoritesServiceError.notFound)
         }
+
+        XCTAssertEqual(storageService.restaurants, [])
     }
 
     func testDelegate() {
@@ -51,7 +61,7 @@ final class FavoritesServiceTests: XCTestCase {
             restaurantRemoved: { _ in methodName = restaurantRemovedMethodName }
         )
         
-        let service = FavoritesService(initial: [])
+        let service = FavoritesService(storageService: FavoritesStorageServiceMock(initial: []))
         service.addDelegate(delegate)
         
         try! service.addRestaurant(with: restaurant.name)
