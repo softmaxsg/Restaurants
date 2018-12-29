@@ -64,6 +64,8 @@
 		D899D33321D6F64A00228761 /* FavoritesServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33221D6F64A00228761 /* FavoritesServiceMock.swift */; };
 		D899D33521D7D90100228761 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33421D7D90100228761 /* Restaurant.swift */; };
 		D899D33721D7E18A00228761 /* Restaurant+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33621D7E18A00228761 /* Restaurant+Helpers.swift */; };
+		D899D33921D7F98800228761 /* FavoritesStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33821D7F98800228761 /* FavoritesStorageService.swift */; };
+		D899D33B21D7FD6200228761 /* FavoritesStorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33A21D7FD6200228761 /* FavoritesStorageServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,8 @@
 		D899D33221D6F64A00228761 /* FavoritesServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesServiceMock.swift; sourceTree = "<group>"; };
 		D899D33421D7D90100228761 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		D899D33621D7E18A00228761 /* Restaurant+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+Helpers.swift"; sourceTree = "<group>"; };
+		D899D33821D7F98800228761 /* FavoritesStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorageService.swift; sourceTree = "<group>"; };
+		D899D33A21D7FD6200228761 /* FavoritesStorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorageServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +315,7 @@
 			children = (
 				D899D2FC21D596E600228761 /* Networking */,
 				D899D32C21D6E11E00228761 /* FavoritesService.swift */,
+				D899D33821D7F98800228761 /* FavoritesStorageService.swift */,
 				D899D31E21D6C81200228761 /* FilteringService.swift */,
 				D899D2EC21D58C2C00228761 /* RestaurantsProvider.swift */,
 				D899D31521D67E7600228761 /* SortingService.swift */,
@@ -323,6 +328,7 @@
 			children = (
 				D899D30821D5AB2200228761 /* Helpers */,
 				D899D32E21D6EE1600228761 /* FavoritesServiceTests.swift */,
+				D899D33A21D7FD6200228761 /* FavoritesStorageServiceTests.swift */,
 				D899D32021D6C9DC00228761 /* FilteredServiceTests.swift */,
 				D899D2EE21D58C5C00228761 /* RestaurantsProviderTests.swift */,
 				D899D31721D6841E00228761 /* SortingServiceTests.swift */,
@@ -473,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D899D32D21D6E11E00228761 /* FavoritesService.swift in Sources */,
+				D899D33921D7F98800228761 /* FavoritesStorageService.swift in Sources */,
 				D899D2FF21D596E600228761 /* URLSessionProtocol.swift in Sources */,
 				D899D30721D599A000228761 /* Constants.swift in Sources */,
 				D899D2C021D5299E00228761 /* Decimal+Money.swift in Sources */,
@@ -514,6 +521,7 @@
 				D899D2C721D5686200228761 /* JSONPresentable.swift in Sources */,
 				D899D2F321D5937D00228761 /* RestaurantsResponse+Helpers.swift in Sources */,
 				D899D2CE21D5690800228761 /* RestaurantDetails+Helpers.swift in Sources */,
+				D899D33B21D7FD6200228761 /* FavoritesStorageServiceTests.swift in Sources */,
 				D899D2D221D569D600228761 /* SortingValues+Helpers.swift in Sources */,
 				D899D2DF21D581EE00228761 /* RestaurantListViewModelTests.swift in Sources */,
 				D899D2D421D56B3A00228761 /* OpeningState+Helpers.swift in Sources */,
