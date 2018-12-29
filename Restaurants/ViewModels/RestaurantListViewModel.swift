@@ -32,7 +32,7 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
     private let favoritesService: FavoritesServiceProtocol
 
     private let operationQueue = OperationQueue()
-    private var restaurants: [Restaurant] = [] { didSet { updateItems() } }
+    private var restaurants: [RestaurantDetails] = [] { didSet { updateItems() } }
     private var items: [RestaurantViewModelProtocol] = []
 
     init(delegate: RestaurantListViewModelDelegate,
@@ -89,21 +89,19 @@ extension RestaurantListViewModel: FavoritesServiceDelegate {
 extension RestaurantListViewModel {
 
     private func updateItems() {
-        let filteredRestaurants = filteringService.filtered(restaurants, using: filteringText)
-
-        let restaurantsWithFavorites = filteredRestaurants.map { restaurant in
-            RestaurantDetails(
-                restaurant: restaurant,
-                isFavorite: favoritesService.isRestaurantFavorite(with: restaurant.name)
+        var restaurants = self.restaurants.map { details in
+            Restaurant(
+                details: details,
+                isFavorite: favoritesService.isRestaurantFavorite(with: details.name)
             )
         }
         
-        let sortedRestaurants = sortingService.sorted(restaurantsWithFavorites, option: sortingOption)
+        restaurants = filteringService.filtered(restaurants, using: filteringText)
+        restaurants = sortingService.sorted(restaurants, option: sortingOption)
         
-        let items = sortedRestaurants.map { details -> RestaurantViewModel in
-            let restaurantName = details.restaurant.name
-            return RestaurantViewModel(details) { [weak self] in
-                self?.toggleFavoriteState(for: restaurantName)
+        let items = restaurants.map { restaurant -> RestaurantViewModel in
+            return RestaurantViewModel(restaurant) { [weak self] in
+                self?.toggleFavoriteState(for: restaurant.name)
             }
         }
         

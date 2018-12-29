@@ -9,11 +9,3 @@ struct FavoriteRestaurant: Equatable, Codable {
     let name: String
     
 }
-
-extension FavoriteRestaurant {
-    
-    init(_ restaurant: Restaurant) {
-        name = restaurant.name
-    }
-    
-}

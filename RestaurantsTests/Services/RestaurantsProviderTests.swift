@@ -7,7 +7,7 @@ import XCTest
 
 final class RestaurantsProviderTests: XCTestCase {
 
-    private let expectedRestaurants = Array(1...Int.random(in: 1...10)).map { _ in Restaurant.random() }
+    private let expectedRestaurants = Array(1...Int.random(in: 1...10)).map { _ in RestaurantDetails.random() }
 
     func testLoadAllSuccessful() {
         let urlSession = mockedURLSession(restaurants: expectedRestaurants)
@@ -45,14 +45,14 @@ extension RestaurantsProviderTests {
 
     private enum MockError: Error { case some }
     
-    private func mockedURLSession(restaurants: [Restaurant]?) -> URLSessionProtocol {
+    private func mockedURLSession(restaurants: [RestaurantDetails]?) -> URLSessionProtocol {
         let data = restaurants != nil ? try? JSONSerialization.data(withJSONObject: RestaurantsResponse(restaurants: restaurants!).JSON()) : nil
         return URLSessionMock(map: [Constants.restaurantsURL: data])
     }
 
-    private func loadRestaurants(using provider: RestaurantsProvider) -> Result<[Restaurant]> {
+    private func loadRestaurants(using provider: RestaurantsProvider) -> Result<[RestaurantDetails]> {
         let expectation = self.expectation(description: "RestaurantsProvider.loadAll")
-        var result: Result<[Restaurant]>!
+        var result: Result<[RestaurantDetails]>!
         
         provider.loadAll {
             result = $0

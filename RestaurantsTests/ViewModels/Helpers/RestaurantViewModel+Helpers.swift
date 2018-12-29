@@ -5,14 +5,6 @@
 import Foundation
 @testable import Restaurants
 
-public func == (lhs: RestaurantViewModelProtocol, rhs: RestaurantDetails) -> Bool {
-    return lhs.isEqual(to: rhs)
-}
-
-public func == (lhs: RestaurantDetails, rhs: RestaurantViewModelProtocol) -> Bool {
-    return rhs.isEqual(to: lhs)
-}
-
 public func == (lhs: RestaurantViewModelProtocol, rhs: Restaurant) -> Bool {
     return lhs.isEqual(to: rhs)
 }
@@ -23,17 +15,13 @@ public func == (lhs: Restaurant, rhs: RestaurantViewModelProtocol) -> Bool {
 
 extension RestaurantViewModelProtocol {
     
-    func isEqual(to details: RestaurantDetails) -> Bool {
-        guard isFavorite == details.isFavorite else { return false }
-        return isEqual(to: details.restaurant)
-    }
-    
     func isEqual(to restaurant: Restaurant) -> Bool {
         let sortingValuesFormatter = numberFormatter(fractionDigits: 0)
         let ratingFormatter = numberFormatter(fractionDigits: 1)
         let moneyFormatter = self.moneyFormatter()
         
-        return name == restaurant.name &&
+        return isFavorite == restaurant.isFavorite &&
+            name == restaurant.name &&
             openingState == restaurant.openingState.rawValue.localizedCapitalized &&
             distance == "\(restaurant.sortingValues.distance)" &&
             bestMatch == sortingValuesFormatter.string(from: NSNumber(value: restaurant.sortingValues.bestMatch))! &&

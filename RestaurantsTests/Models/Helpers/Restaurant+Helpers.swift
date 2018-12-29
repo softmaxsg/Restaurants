@@ -7,24 +7,13 @@ import Foundation
 
 extension Restaurant {
     
-    static func random(name: String = .random(), openingState: OpeningState = .random(), sortingValues: SortingValues = .random()) -> Restaurant {
+    static func random(name: String = .random(), openingState: OpeningState = .random(), sortingValues: SortingValues = .random(), isFavorite: Bool = .random()) -> Restaurant {
         return Restaurant(
+            isFavorite: isFavorite,
             name: name,
             openingState: openingState,
             sortingValues: sortingValues
         )
-    }
-    
-}
-
-extension Restaurant: JSONPresentable {
-
-    func JSON() -> [String: Any] {
-        return [
-            "name": name,
-            "status": openingState.rawValue,
-            "sortingValues": sortingValues.JSON()
-        ]
     }
 
 }

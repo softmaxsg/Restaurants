@@ -5,10 +5,10 @@
 import XCTest
 @testable import Restaurants
 
-final class RestaurantDecodingTests: XCTestCase, DecodingTester {
+final class RestaurantDetailsDecodingTests: XCTestCase, DecodingTester {
 
-    let expectedObject = Restaurant.random()
-    let requiredFields = Restaurant.CodingKeys.allCases.map { $0.rawValue }
+    let expectedObject = RestaurantDetails.random()
+    let requiredFields = RestaurantDetails.CodingKeys.allCases.map { $0.rawValue }
     
     func testFullDecoding() {
         performFullDecodingTest()

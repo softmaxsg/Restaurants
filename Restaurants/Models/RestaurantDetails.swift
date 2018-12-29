@@ -6,7 +6,20 @@ import Foundation
 
 struct RestaurantDetails: Equatable {
     
-    let restaurant: Restaurant
-    let isFavorite: Bool
+    let name: String
+    let openingState: OpeningState
+    let sortingValues: SortingValues
     
+}
+
+extension RestaurantDetails: Decodable {
+    
+    enum CodingKeys: String, CaseIterable, CodingKey {
+        
+        case name
+        case openingState = "status"
+        case sortingValues
+        
+    }
+
 }

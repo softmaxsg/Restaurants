@@ -6,6 +6,6 @@ import Foundation
 
 struct RestaurantsResponse: Equatable, Decodable {
     
-    let restaurants: [Restaurant]
+    let restaurants: [RestaurantDetails]
     
 }

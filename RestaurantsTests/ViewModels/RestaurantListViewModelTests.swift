@@ -7,10 +7,10 @@ import XCTest
 
 final class RestaurantListViewModelTests: XCTestCase {
 
-    private let initialRestaurants = Array(1...Int.random(in: 2...10)).map { _ in RestaurantDetails.random() }
+    private let initialRestaurants = Array(1...Int.random(in: 2...10)).map { _ in Restaurant.random() }
 
     func testAllItems() {
-        var expectedRestaurants: [RestaurantDetails]! = nil
+        var expectedRestaurants: [Restaurant]! = nil
         let sortingService = SortingServiceMock { restaurants, _ in
             expectedRestaurants = restaurants.shuffled()
             return expectedRestaurants
@@ -22,7 +22,7 @@ final class RestaurantListViewModelTests: XCTestCase {
     
     func testSorting() {
         let expectedSortingOption = SortingOption.allCases.randomElement()!
-        let expectedRestaurants: [RestaurantDetails] = initialRestaurants.shuffled()
+        let expectedRestaurants: [Restaurant] = initialRestaurants.shuffled()
         
         var sortingServiceCalls = 0
         let sortingService = SortingServiceMock { restaurants, option in
@@ -51,14 +51,11 @@ final class RestaurantListViewModelTests: XCTestCase {
     }
     
     func testFiltering() {
-        let initialRestaurants = self.initialRestaurants.map { $0.restaurant }
         let expectedFilteringText = String.random()
         let expectedRestaurants = initialRestaurants.filter { _ in .random() }
         
         var filteringServiceCalls = 0
         let filteringService = FilteringServiceMock { restaurants, text in
-            XCTAssertEqual(restaurants, self.initialRestaurants.map { $0.restaurant })
-            
             filteringServiceCalls += 1
             switch filteringServiceCalls {
             case 1:
@@ -131,7 +128,7 @@ final class RestaurantListViewModelTests: XCTestCase {
     
     func testFavoritesService() {
         let isRestaurantFavorite: (String) -> Bool = { name in
-            self.initialRestaurants.first(where: { $0.restaurant.name == name })!.isFavorite
+            self.initialRestaurants.first(where: { $0.name == name })!.isFavorite
         }
         
         let favoritesService = FavoritesServiceMock(
@@ -151,7 +148,7 @@ final class RestaurantListViewModelTests: XCTestCase {
     
     func testToggleFavoriteState() {
         let isRestaurantFavorite: (String) -> Bool = { name in
-            self.initialRestaurants.first(where: { $0.restaurant.name == name })!.isFavorite
+            self.initialRestaurants.first(where: { $0.name == name })!.isFavorite
         }
         
         let expectation = self.expectation(description: "FavoritesService.addRestaurant or removeRestaurant")
@@ -186,14 +183,14 @@ extension RestaurantListViewModelTests {
     
     private enum MockError: Error { case some }
     
-    private func mockedRestaurantsProvider(with result: Result<[Restaurant]>) -> RestaurantsProviderProtocol {
+    private func mockedRestaurantsProvider(with result: Result<[RestaurantDetails]>) -> RestaurantsProviderProtocol {
         return RestaurantsProviderMock { handler in
             OperationQueue.main.addOperation { handler(result) }
             return EmptyTask()
         }
     }
     
-    private func viewModel(with result: Result<[RestaurantDetails]>,
+    private func viewModel(with result: Result<[Restaurant]>,
                            delegate: RestaurantListViewModelDelegate? = nil,
                            sortingService: SortingServiceProtocol? = nil,
                            filteringService: FilteringServiceProtocol? = nil,
@@ -203,7 +200,7 @@ extension RestaurantListViewModelTests {
                            line: UInt = #line) -> RestaurantListViewModel {
         var expectation = self.expectation(description: "RestaurantListViewModel.loadRestaurants")
 
-        let provider = mockedRestaurantsProvider(with: result.map { $0.map { $0.restaurant } })
+        let provider = mockedRestaurantsProvider(with: result.map { $0.map(RestaurantDetails.init) })
         let defaultDelegate = RestaurantListViewModelDelegateMock(
             itemsDidUpdate: {
                 XCTAssertTrue(OperationQueue.current! === OperationQueue.main, "Delegate method has to be called on the main thread")
@@ -244,15 +241,6 @@ extension RestaurantListViewModelTests {
         }
         
         return viewModel
-    }
-    
-    private func compareItems(in viewModel: RestaurantListViewModel, with restaurants: [RestaurantDetails], file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(viewModel.itemsCount, restaurants.count, "RestaurantViewModel contains \(viewModel.itemsCount) items but expected \(restaurants.count)", file: file, line: line)
-        
-        for (index, restaurant) in restaurants.enumerated() {
-            let item = try! viewModel.item(at: index)
-            XCTAssertTrue(item == restaurant, "RestaurantViewModel at index \(index) does not match corresponding Restaurant objct", file: file, line: line)
-        }
     }
     
     private func compareItems(in viewModel: RestaurantListViewModel, with restaurants: [Restaurant], file: StaticString = #file, line: UInt = #line) {

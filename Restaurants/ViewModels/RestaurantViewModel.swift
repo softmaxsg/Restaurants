@@ -38,12 +38,10 @@ final class RestaurantViewModel: RestaurantViewModelProtocol {
     
     private let toggleFavoriteStateCallback: () -> Void
 
-    init(_ details: RestaurantDetails, toggleFavoriteStateCallback: @escaping () -> Void) {
+    init(_ restaurant: Restaurant, toggleFavoriteStateCallback: @escaping () -> Void) {
         self.toggleFavoriteStateCallback = toggleFavoriteStateCallback
 
-        isFavorite = details.isFavorite
-        let restaurant = details.restaurant
-        
+        isFavorite = restaurant.isFavorite
         name = restaurant.name
         openingState = restaurant.openingState.displayValue
         

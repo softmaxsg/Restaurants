@@ -13,7 +13,7 @@ enum RestaurantsProviderError: Error {
 protocol RestaurantsProviderProtocol {
     
     @discardableResult
-    func loadAll(completion handler: @escaping (Result<[Restaurant]>) -> Void) -> Cancellable
+    func loadAll(completion handler: @escaping (Result<[RestaurantDetails]>) -> Void) -> Cancellable
     
 }
 
@@ -29,7 +29,7 @@ final class RestaurantsProvider: RestaurantsProviderProtocol {
     }
     
     @discardableResult
-    func loadAll(completion handler: @escaping (Result<[Restaurant]>) -> Void) -> Cancellable {
+    func loadAll(completion handler: @escaping (Result<[RestaurantDetails]>) -> Void) -> Cancellable {
         let jsonDecoder = self.jsonDecoder
         let task = urlSession.dataTask(with: urlRequest) { (data, urlResponse, error) in
             guard let data = data, let httpResponse = urlResponse as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {

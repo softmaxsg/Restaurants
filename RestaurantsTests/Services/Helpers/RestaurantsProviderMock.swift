@@ -7,7 +7,7 @@ import Foundation
 
 final class RestaurantsProviderMock: RestaurantsProviderProtocol {
 
-    typealias LoadAllImpl = (@escaping (Result<[Restaurant]>) -> Void) -> Cancellable
+    typealias LoadAllImpl = (@escaping (Result<[RestaurantDetails]>) -> Void) -> Cancellable
     
     private let loadAllImpl: LoadAllImpl
     
@@ -16,7 +16,7 @@ final class RestaurantsProviderMock: RestaurantsProviderProtocol {
     }
     
     @discardableResult
-    func loadAll(completion handler: @escaping (Result<[Restaurant]>) -> Void) -> Cancellable {
+    func loadAll(completion handler: @escaping (Result<[RestaurantDetails]>) -> Void) -> Cancellable {
         return loadAllImpl(handler)
     }
 
