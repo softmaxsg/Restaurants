@@ -8,18 +8,15 @@ import XCTest
 final class RestaurantViewModelTests: XCTestCase {
 
     func testInitialization() {
-        let restaurant = Restaurant.random()
-        let isFavorite = Bool.random()
-        
-        let viewModel = RestaurantViewModel(restaurant, isFavorite: isFavorite) { }
-        XCTAssertTrue(viewModel == restaurant)
-        XCTAssertEqual(viewModel.isFavorite, isFavorite)
+        let restaurantDetails = RestaurantDetails.random()
+        let viewModel = RestaurantViewModel(restaurantDetails) { }
+        XCTAssertTrue(viewModel == restaurantDetails)
     }
 
     func testToggleFavoriteState() {
         let expectation = self.expectation(description: "toggleFavoriteStateCallback")
 
-        let viewModel = RestaurantViewModel(.random(), isFavorite: .random()) {
+        let viewModel = RestaurantViewModel(RestaurantDetails.random()) {
             expectation.fulfill()
         }
         

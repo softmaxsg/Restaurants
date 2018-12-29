@@ -38,26 +38,30 @@ final class RestaurantViewModel: RestaurantViewModelProtocol {
     
     private let toggleFavoriteStateCallback: () -> Void
 
-    init(_ restaurant: Restaurant, isFavorite: Bool, toggleFavoriteStateCallback: @escaping () -> Void) {
+    init(_ details: RestaurantDetails, toggleFavoriteStateCallback: @escaping () -> Void) {
         self.toggleFavoriteStateCallback = toggleFavoriteStateCallback
-        self.isFavorite = isFavorite
 
+        isFavorite = details.isFavorite
+        let restaurant = details.restaurant
+        
         name = restaurant.name
         openingState = restaurant.openingState.displayValue
-        distance = "\(restaurant.sortingValues.distance)"
+        
+        let sortingValues = restaurant.sortingValues
+        distance = "\(sortingValues.distance)"
 
         let sortingValuesFormatter = RestaurantViewModel.numberFormatter(fractionDigits: 0)
-        bestMatch = sortingValuesFormatter.string(from: NSNumber(value: restaurant.sortingValues.bestMatch))!
-        newest = sortingValuesFormatter.string(from: NSNumber(value: restaurant.sortingValues.newest))!
-        popularity = sortingValuesFormatter.string(from: NSNumber(value: restaurant.sortingValues.popularity))!
+        bestMatch = sortingValuesFormatter.string(from: NSNumber(value: sortingValues.bestMatch))!
+        newest = sortingValuesFormatter.string(from: NSNumber(value: sortingValues.newest))!
+        popularity = sortingValuesFormatter.string(from: NSNumber(value: sortingValues.popularity))!
         
         let ratingFormatter = RestaurantViewModel.numberFormatter(fractionDigits: 1)
-        averageRating = ratingFormatter.string(from: NSNumber(value: restaurant.sortingValues.averageRating))!
+        averageRating = ratingFormatter.string(from: NSNumber(value: sortingValues.averageRating))!
         
         let moneyFormatter = RestaurantViewModel.moneyFormatter()
-        averageProductPrice = moneyFormatter.string(from: NSDecimalNumber(decimal: restaurant.sortingValues.averageProductPrice))!
-        deliveryCost = moneyFormatter.string(from: NSDecimalNumber(decimal: restaurant.sortingValues.deliveryCost))!
-        minimalCost = moneyFormatter.string(from: NSDecimalNumber(decimal: restaurant.sortingValues.minimalCost))!
+        averageProductPrice = moneyFormatter.string(from: NSDecimalNumber(decimal: sortingValues.averageProductPrice))!
+        deliveryCost = moneyFormatter.string(from: NSDecimalNumber(decimal: sortingValues.deliveryCost))!
+        minimalCost = moneyFormatter.string(from: NSDecimalNumber(decimal: sortingValues.minimalCost))!
     }
     
     func toggleFavoriteState() {

@@ -34,5 +34,12 @@ extension Result {
         case .failure(let error): return error
         }
     }
-
+    
+    func map<T>(_ transform: (Value) throws -> T) rethrows -> Result<T> {
+        switch self {
+        case .success(let value): return .success(try transform(value))
+        case .failure(let error): return .failure(error)
+        }
+    }
+    
 }

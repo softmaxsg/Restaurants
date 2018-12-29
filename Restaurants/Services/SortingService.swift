@@ -19,43 +19,45 @@ enum SortingOption: CaseIterable {
 
 protocol SortingServiceProtocol {
 
-    typealias IsFavoriteCallback = (Restaurant) -> Bool
-    
-    func sorted(_ restaurants: [Restaurant], option: SortingOption, isFavoriteCallback: IsFavoriteCallback) -> [Restaurant]
+    func sorted(_ restaurants: [RestaurantDetails], option: SortingOption) -> [RestaurantDetails]
     
 }
 
 final class SortingService: SortingServiceProtocol {
     
-    func sorted(_ restaurants: [Restaurant], option: SortingOption, isFavoriteCallback: IsFavoriteCallback) -> [Restaurant] {
+    func sorted(_ restaurants: [RestaurantDetails], option: SortingOption) -> [RestaurantDetails] {
         return restaurants.sorted { lhs, rhs in
-            let lhsIsFavorite = isFavoriteCallback(lhs)
-            let rhsIsFavorite = isFavoriteCallback(rhs)
-
-            if lhsIsFavorite != rhsIsFavorite { return lhsIsFavorite }
-            if lhs.openingState != rhs.openingState { return compare(lhs: lhs.openingState, rhs: rhs.openingState) }
-
-            switch option {
-            // Higher is better
-            case .bestMatch: return lhs.sortingValues.bestMatch > rhs.sortingValues.bestMatch
-            case .newest: return lhs.sortingValues.newest > rhs.sortingValues.newest
-            case .averageRating: return lhs.sortingValues.averageRating > rhs.sortingValues.averageRating
-            case .popularity: return lhs.sortingValues.popularity > rhs.sortingValues.popularity
+            if lhs.isFavorite != rhs.isFavorite { return lhs.isFavorite }
             
-            // Closer is better
-            case .distance: return lhs.sortingValues.distance < rhs.sortingValues.distance
-
-            // Cheaper is better
-            case .averageProductPrice: return lhs.sortingValues.averageProductPrice < rhs.sortingValues.averageProductPrice
-            case .deliveryCost: return lhs.sortingValues.deliveryCost < rhs.sortingValues.deliveryCost
-            case .minimalCost: return lhs.sortingValues.minimalCost < rhs.sortingValues.minimalCost
+            if lhs.restaurant.openingState != rhs.restaurant.openingState {
+                return compare(lhs: lhs.restaurant.openingState, rhs: rhs.restaurant.openingState)
             }
+
+            return compare(lhs: lhs.restaurant.sortingValues, rhs: rhs.restaurant.sortingValues, option: option)
         }
     }
     
 }
 
 extension SortingService {
+    
+    private func compare(lhs: SortingValues, rhs: SortingValues, option: SortingOption) -> Bool {
+        switch option {
+        // Higher is better
+        case .bestMatch: return lhs.bestMatch > rhs.bestMatch
+        case .newest: return lhs.newest > rhs.newest
+        case .averageRating: return lhs.averageRating > rhs.averageRating
+        case .popularity: return lhs.popularity > rhs.popularity
+            
+        // Closer is better
+        case .distance: return lhs.distance < rhs.distance
+            
+        // Cheaper is better
+        case .averageProductPrice: return lhs.averageProductPrice < rhs.averageProductPrice
+        case .deliveryCost: return lhs.deliveryCost < rhs.deliveryCost
+        case .minimalCost: return lhs.minimalCost < rhs.minimalCost
+        }
+    }
     
     private func compare(lhs: OpeningState, rhs: OpeningState) -> Bool {
         switch lhs {

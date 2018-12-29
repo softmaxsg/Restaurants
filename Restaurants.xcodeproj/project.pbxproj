@@ -62,6 +62,8 @@
 		D899D32F21D6EE1600228761 /* FavoritesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D32E21D6EE1600228761 /* FavoritesServiceTests.swift */; };
 		D899D33121D6EFD500228761 /* FavoritesServiceDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33021D6EFD500228761 /* FavoritesServiceDelegateMock.swift */; };
 		D899D33321D6F64A00228761 /* FavoritesServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33221D6F64A00228761 /* FavoritesServiceMock.swift */; };
+		D899D33521D7D90100228761 /* RestaurantDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33421D7D90100228761 /* RestaurantDetails.swift */; };
+		D899D33721D7E18A00228761 /* RestaurantDetails+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D33621D7E18A00228761 /* RestaurantDetails+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,8 @@
 		D899D32E21D6EE1600228761 /* FavoritesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesServiceTests.swift; sourceTree = "<group>"; };
 		D899D33021D6EFD500228761 /* FavoritesServiceDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesServiceDelegateMock.swift; sourceTree = "<group>"; };
 		D899D33221D6F64A00228761 /* FavoritesServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesServiceMock.swift; sourceTree = "<group>"; };
+		D899D33421D7D90100228761 /* RestaurantDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetails.swift; sourceTree = "<group>"; };
+		D899D33621D7E18A00228761 /* RestaurantDetails+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantDetails+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,7 @@
 				D899D32421D6D86100228761 /* FavoriteRestaurant.swift */,
 				D899D2B821D5215A00228761 /* OpeningState.swift */,
 				D899D2B621D51EDE00228761 /* Restaurant.swift */,
+				D899D33421D7D90100228761 /* RestaurantDetails.swift */,
 				D899D2F021D5931500228761 /* RestaurantsResponse.swift */,
 				D899D2BC21D5220300228761 /* SortingValues.swift */,
 			);
@@ -246,6 +251,7 @@
 				D899D2C321D5686200228761 /* JSONPresentable.swift */,
 				D899D2D321D56B3A00228761 /* OpeningState+Helpers.swift */,
 				D899D2CD21D5690800228761 /* Restaurant+Helpers.swift */,
+				D899D33621D7E18A00228761 /* RestaurantDetails+Helpers.swift */,
 				D899D2F221D5937D00228761 /* RestaurantsResponse+Helpers.swift */,
 				D899D2D121D569D600228761 /* SortingValues+Helpers.swift */,
 			);
@@ -480,6 +486,7 @@
 				D899D31F21D6C81200228761 /* FilteringService.swift in Sources */,
 				D899D2F121D5931500228761 /* RestaurantsResponse.swift in Sources */,
 				D899D2FA21D5955D00228761 /* Result.swift in Sources */,
+				D899D33521D7D90100228761 /* RestaurantDetails.swift in Sources */,
 				D899D2E421D583F400228761 /* RandomAccessCollection+Helpers.swift in Sources */,
 				D899D2F921D5955D00228761 /* Cancellable.swift in Sources */,
 				D899D2BD21D5220300228761 /* SortingValues.swift in Sources */,
@@ -514,6 +521,7 @@
 				D899D30A21D5AB4A00228761 /* JSONDecoderMock.swift in Sources */,
 				D899D32721D6D96200228761 /* FavoriteRestaurant+Helpers.swift in Sources */,
 				D899D31421D67A7000228761 /* RestaurantViewModelTests.swift in Sources */,
+				D899D33721D7E18A00228761 /* RestaurantDetails+Helpers.swift in Sources */,
 				D899D32121D6C9DC00228761 /* FilteredServiceTests.swift in Sources */,
 				D899D2F521D593F400228761 /* RestaurantsResponseDecodingTests.swift in Sources */,
 				D899D31821D6841E00228761 /* SortingServiceTests.swift in Sources */,

@@ -91,17 +91,18 @@ extension RestaurantListViewModel {
     private func updateItems() {
         let filteredRestaurants = filteringService.filtered(restaurants, using: filteringText)
 
-        let favoriteStatesMap = filteredRestaurants.reduce(into: [String: Bool]()) { result, restaurant in
-            result[restaurant.name] = favoritesService.isRestaurantFavorite(with: restaurant.name)
+        let restaurantsWithFavorites = filteredRestaurants.map { restaurant in
+            RestaurantDetails(
+                restaurant: restaurant,
+                isFavorite: favoritesService.isRestaurantFavorite(with: restaurant.name)
+            )
         }
         
-        let sortedRestaurants = sortingService.sorted(filteredRestaurants, option: sortingOption) { restaurant in
-            favoriteStatesMap[restaurant.name] ?? false
-        }
+        let sortedRestaurants = sortingService.sorted(restaurantsWithFavorites, option: sortingOption)
         
-        let items = sortedRestaurants.map { restaurant -> RestaurantViewModel in
-            let restaurantName = restaurant.name
-            return RestaurantViewModel(restaurant, isFavorite: favoriteStatesMap[restaurantName] ?? false) { [weak self] in
+        let items = sortedRestaurants.map { details -> RestaurantViewModel in
+            let restaurantName = details.restaurant.name
+            return RestaurantViewModel(details) { [weak self] in
                 self?.toggleFavoriteState(for: restaurantName)
             }
         }
