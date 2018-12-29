@@ -19,14 +19,20 @@ enum SortingOption: CaseIterable {
 
 protocol SortingServiceProtocol {
 
-    func sorted(_ restaurants: [Restaurant], option: SortingOption) -> [Restaurant]
+    typealias IsFavoriteCallback = (Restaurant) -> Bool
+    
+    func sorted(_ restaurants: [Restaurant], option: SortingOption, isFavoriteCallback: IsFavoriteCallback) -> [Restaurant]
     
 }
 
 final class SortingService: SortingServiceProtocol {
     
-    func sorted(_ restaurants: [Restaurant], option: SortingOption) -> [Restaurant] {
+    func sorted(_ restaurants: [Restaurant], option: SortingOption, isFavoriteCallback: IsFavoriteCallback) -> [Restaurant] {
         return restaurants.sorted { lhs, rhs in
+            let lhsIsFavorite = isFavoriteCallback(lhs)
+            let rhsIsFavorite = isFavoriteCallback(rhs)
+
+            if lhsIsFavorite != rhsIsFavorite { return lhsIsFavorite }
             if lhs.openingState != rhs.openingState { return compare(lhs: lhs.openingState, rhs: rhs.openingState) }
 
             switch option {

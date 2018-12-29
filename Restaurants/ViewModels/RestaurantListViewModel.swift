@@ -90,10 +90,24 @@ extension RestaurantListViewModel {
 
     private func updateItems() {
         let filteredRestaurants = filteringService.filtered(restaurants, using: filteringText)
-        let sortedRestaurants = sortingService.sorted(filteredRestaurants, option: sortingOption)
-        items = sortedRestaurants.map(RestaurantViewModel.init)
+
+        let favoriteStatesMap = filteredRestaurants.reduce(into: [String: Bool]()) { result, restaurant in
+            result[restaurant.name] = favoritesService.isRestaurantFavorite(with: restaurant.name)
+        }
+        
+        let sortedRestaurants = sortingService.sorted(filteredRestaurants, option: sortingOption) { restaurant in
+            favoriteStatesMap[restaurant.name] ?? false
+        }
+        
+        let items = sortedRestaurants.map { restaurant -> RestaurantViewModel in
+            let restaurantName = restaurant.name
+            return RestaurantViewModel(restaurant, isFavorite: favoriteStatesMap[restaurantName] ?? false) { [weak self] in
+                self?.toggleFavoriteState(for: restaurantName)
+            }
+        }
         
         OperationQueue.main.addOperation {
+            self.items = items
             self.delegate?.itemsDidUpdate()
         }
     }
@@ -101,6 +115,14 @@ extension RestaurantListViewModel {
     private func handleLoadingError(_ error: Error) {
         OperationQueue.main.addOperation {
             self.delegate?.itemsLoadDidFail(with: error)
+        }
+    }
+    
+    private func toggleFavoriteState(for restaurantName: String) {
+        if favoritesService.isRestaurantFavorite(with: restaurantName) {
+            try? favoritesService.removeRestaurant(with: restaurantName)
+        } else {
+            try? favoritesService.addRestaurant(with: restaurantName)
         }
     }
 

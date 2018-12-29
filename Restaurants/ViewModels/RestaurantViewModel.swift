@@ -6,6 +6,7 @@ import Foundation
 
 protocol RestaurantViewModelProtocol {
 
+    var isFavorite: Bool { get }
     var name: String { get }
     var openingState: String { get }
     var bestMatch: String { get }
@@ -17,10 +18,13 @@ protocol RestaurantViewModelProtocol {
     var deliveryCost: String { get }
     var minimalCost: String { get }
     
+    func toggleFavoriteState()
+    
 }
 
 final class RestaurantViewModel: RestaurantViewModelProtocol {
-    
+
+    let isFavorite: Bool
     let name: String
     let openingState: String
     let bestMatch: String
@@ -32,7 +36,12 @@ final class RestaurantViewModel: RestaurantViewModelProtocol {
     let deliveryCost: String
     let minimalCost: String
     
-    init(_ restaurant: Restaurant) {
+    private let toggleFavoriteStateCallback: () -> Void
+
+    init(_ restaurant: Restaurant, isFavorite: Bool, toggleFavoriteStateCallback: @escaping () -> Void) {
+        self.toggleFavoriteStateCallback = toggleFavoriteStateCallback
+        self.isFavorite = isFavorite
+
         name = restaurant.name
         openingState = restaurant.openingState.displayValue
         distance = "\(restaurant.sortingValues.distance)"
@@ -49,6 +58,10 @@ final class RestaurantViewModel: RestaurantViewModelProtocol {
         averageProductPrice = moneyFormatter.string(from: NSDecimalNumber(decimal: restaurant.sortingValues.averageProductPrice))!
         deliveryCost = moneyFormatter.string(from: NSDecimalNumber(decimal: restaurant.sortingValues.deliveryCost))!
         minimalCost = moneyFormatter.string(from: NSDecimalNumber(decimal: restaurant.sortingValues.minimalCost))!
+    }
+    
+    func toggleFavoriteState() {
+        toggleFavoriteStateCallback()
     }
 
 }

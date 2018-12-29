@@ -7,7 +7,7 @@ import Foundation
 
 final class SortingServiceMock: SortingServiceProtocol {
     
-    typealias SortedImpl = ([Restaurant], SortingOption) -> [Restaurant]
+    typealias SortedImpl = ([Restaurant], SortingOption, IsFavoriteCallback) -> [Restaurant]
     
     private let sortedImpl: SortedImpl
     
@@ -15,16 +15,16 @@ final class SortingServiceMock: SortingServiceProtocol {
         self.sortedImpl = sortedImpl
     }
     
-    func sorted(_ restaurants: [Restaurant], option: SortingOption) -> [Restaurant] {
-        return sortedImpl(restaurants, option)
+    func sorted(_ restaurants: [Restaurant], option: SortingOption, isFavoriteCallback: IsFavoriteCallback) -> [Restaurant] {
+        return sortedImpl(restaurants, option, isFavoriteCallback)
     }
-    
+
 }
 
 extension SortingServiceMock {
 
     static var empty: SortingServiceMock {
-        return SortingServiceMock { restaurants, _ in restaurants }
+        return SortingServiceMock { restaurants, _, _ in restaurants }
     }
     
 }
