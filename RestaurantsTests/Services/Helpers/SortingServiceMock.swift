@@ -20,3 +20,11 @@ final class SortingServiceMock: SortingServiceProtocol {
     }
     
 }
+
+extension SortingServiceMock {
+
+    static var empty: SortingServiceMock {
+        return SortingServiceMock { restaurants, _ in restaurants }
+    }
+    
+}

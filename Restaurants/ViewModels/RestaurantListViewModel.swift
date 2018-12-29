@@ -29,18 +29,24 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
     private let restaurantsProvider: RestaurantsProviderProtocol
     private let sortingService: SortingServiceProtocol
     private let filteringService: FilteringServiceProtocol
-    
+    private let favoritesService: FavoritesServiceProtocol
+
+    private let operationQueue = OperationQueue()
     private var restaurants: [Restaurant] = [] { didSet { updateItems() } }
     private var items: [RestaurantViewModelProtocol] = []
 
     init(delegate: RestaurantListViewModelDelegate,
          restaurantsProvider: RestaurantsProviderProtocol,
          sortingService: SortingServiceProtocol,
-         filteringService: FilteringServiceProtocol) {
+         filteringService: FilteringServiceProtocol,
+         favoritesService: FavoritesServiceProtocol) {
         self.delegate = delegate
         self.restaurantsProvider = restaurantsProvider
         self.sortingService = sortingService
         self.filteringService = filteringService
+        self.favoritesService = favoritesService
+        
+        favoritesService.addDelegate(self)
     }
 
     var sortingOption: SortingOption = .bestMatch { didSet { updateItems() } }
@@ -54,7 +60,7 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
     
     func loadRestaurants() {
         restaurantsProvider.loadAll { [weak self] result in
-            OperationQueue.main.addOperation {
+            self?.operationQueue.addOperation {
                 switch result {
                 case .success(let restaurants):
                     self?.restaurants = restaurants
@@ -68,17 +74,34 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
     
 }
 
+extension RestaurantListViewModel: FavoritesServiceDelegate {
+    
+    func favoriteRestaurantAdded(with name: String) {
+        updateItems()
+    }
+    
+    func favoriteRestaurantRemoved(with name: String) {
+        updateItems()
+    }
+    
+}
+
 extension RestaurantListViewModel {
 
     private func updateItems() {
         let filteredRestaurants = filteringService.filtered(restaurants, using: filteringText)
         let sortedRestaurants = sortingService.sorted(filteredRestaurants, option: sortingOption)
-        items = sortedRestaurants.map(RestaurantViewModel.init)        
-        delegate?.itemsDidUpdate()
+        items = sortedRestaurants.map(RestaurantViewModel.init)
+        
+        OperationQueue.main.addOperation {
+            self.delegate?.itemsDidUpdate()
+        }
     }
     
     private func handleLoadingError(_ error: Error) {
-        delegate?.itemsLoadDidFail(with: error)
+        OperationQueue.main.addOperation {
+            self.delegate?.itemsLoadDidFail(with: error)
+        }
     }
 
 }

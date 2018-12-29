@@ -20,3 +20,11 @@ final class FilteringServiceMock: FilteringServiceProtocol {
     }
     
 }
+
+extension FilteringServiceMock {
+    
+    static var empty: FilteringServiceMock {
+        return FilteringServiceMock { restaurants, _ in restaurants }
+    }
+    
+}

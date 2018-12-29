@@ -85,6 +85,34 @@ final class RestaurantListViewModelTests: XCTestCase {
             XCTAssertEqual(error as? RandomAccessCollectionError, RandomAccessCollectionError.indexOutOfBounds)
         }
     }
+    
+    func testFavoritesServiceDelegate() {
+        var expectation = self.expectation(description: "RestaurantListViewModel.loadRestaurants")
+        let delegate = RestaurantListViewModelDelegateMock(
+            itemsDidUpdate: { expectation.fulfill() },
+            itemsUpdateDidFail: { _ in XCTFail("Should be called in this test") }
+        )
+
+        let favoritesServiceExpectation = self.expectation(description: "FavoritesService.addDelegate")
+        let favoritesService = FavoritesServiceMock(
+            isRestaurantFavorite: { _ in false },
+            addRestaurant: { _ in XCTFail("Should be called in this test") },
+            removeRestaurant: { _ in XCTFail("Should be called in this test") },
+            addDelegate: { _ in favoritesServiceExpectation.fulfill() },
+            removeDelegate: { _ in XCTFail("Should be called in this test") }
+        )
+
+        let viewModel = self.viewModel(with: .success([]), delegate: delegate, favoritesService: favoritesService)
+        wait(for: [expectation, favoritesServiceExpectation], timeout: 1)
+        
+        expectation = self.expectation(description: "FavoritesServiceDelegatel.favoriteRestaurantAdded")
+        viewModel.favoriteRestaurantAdded(with: .random())
+        wait(for: [expectation], timeout: 1)
+
+        expectation = self.expectation(description: "FavoritesServiceDelegatel.favoriteRestaurantRemoved")
+        viewModel.favoriteRestaurantRemoved(with: .random())
+        wait(for: [expectation], timeout: 1)
+    }
 
 }
 
@@ -99,11 +127,17 @@ extension RestaurantListViewModelTests {
         }
     }
     
-    private func viewModel(with result: Result<[Restaurant]>, sortingService: SortingServiceProtocol? = nil, filteringService: FilteringServiceProtocol? = nil, file: StaticString = #file, line: UInt = #line) -> RestaurantListViewModel {
+    private func viewModel(with result: Result<[Restaurant]>,
+                           delegate: RestaurantListViewModelDelegate? = nil,
+                           sortingService: SortingServiceProtocol? = nil,
+                           filteringService: FilteringServiceProtocol? = nil,
+                           favoritesService: FavoritesServiceProtocol? = nil,
+                           file: StaticString = #file,
+                           line: UInt = #line) -> RestaurantListViewModel {
         let expectation = self.expectation(description: "RestaurantListViewModel.loadRestaurants")
 
         let provider = mockedRestaurantsProvider(with: result)
-        let delegate = RestaurantListViewModelDelegateMock(
+        let defaultDelegate = RestaurantListViewModelDelegateMock(
             itemsDidUpdate: {
                 switch result {
                 case .success: expectation.fulfill()
@@ -119,13 +153,19 @@ extension RestaurantListViewModelTests {
         )
         
         let viewModel = RestaurantListViewModel(
-            delegate: delegate,
+            delegate: delegate ?? defaultDelegate,
             restaurantsProvider: provider,
-            sortingService: sortingService ?? SortingServiceMock { restaurants, _ in restaurants },
-            filteringService: filteringService ?? FilteringServiceMock { restaurants, _ in restaurants }
+            sortingService: sortingService ?? SortingServiceMock.empty,
+            filteringService: filteringService ?? FilteringServiceMock.empty,
+            favoritesService: favoritesService ?? FavoritesServiceMock.empty
         )
         
         viewModel.loadRestaurants()
+        
+        if delegate != nil {
+            expectation.fulfill()
+        }
+
         wait(for: [expectation], timeout: 1)
         return viewModel
     }
