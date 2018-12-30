@@ -176,6 +176,13 @@ final class RestaurantListViewModelTests: XCTestCase {
         
         wait(for: [expectation], timeout: 1)
     }
+    
+    // Just making sure it's the instance of the specific class is enough since that class is tested separately
+    func testSortingSelectorViewModel() {
+        let viewModel = self.viewModel(with: .success(initialRestaurants))
+        let sortingSelectorViewModel = viewModel.sortingSelectorViewModel
+        XCTAssertTrue(type(of: sortingSelectorViewModel) == SortingSelectorViewModel.self)
+    }
 
 }
 

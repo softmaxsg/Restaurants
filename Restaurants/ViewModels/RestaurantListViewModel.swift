@@ -16,6 +16,8 @@ protocol RestaurantListViewModelProtocol {
     var sortingOption: SortingOption { get set }
     var filteringText: String { get set }
     
+    var sortingSelectorViewModel: SortingSelectorViewModelProtocol { get }
+
     var itemsCount: Int { get }
     func item(at index: Int) throws -> RestaurantViewModelProtocol
     
@@ -52,6 +54,8 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
     var sortingOption: SortingOption = .bestMatch { didSet { updateItems() } }
     var filteringText: String = "" { didSet { updateItems() } }
     
+    private(set) lazy var sortingSelectorViewModel: SortingSelectorViewModelProtocol = SortingSelectorViewModel(delegate: self)
+
     var itemsCount: Int { return items.count }
     
     func item(at index: Int) throws -> RestaurantViewModelProtocol {
@@ -70,6 +74,14 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
                 }
             }
         }
+    }
+    
+}
+
+extension RestaurantListViewModel: SortingSelectorViewModelDelegate {
+
+    func sortingDidChange(to option: SortingOption) {
+        sortingOption = option
     }
     
 }

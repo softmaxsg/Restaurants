@@ -4,19 +4,6 @@
 
 import Foundation
 
-enum SortingOption: String, CaseIterable {
-    
-    case bestMatch = "Best Match"
-    case newest = "Newest"
-    case averageRating = "Rating"
-    case distance = "Distance"
-    case popularity = "Popularity"
-    case averageProductPrice = "Average Price"
-    case deliveryCost = "Delivery"
-    case minimalCost = "Minimal Order"
-
-}
-
 protocol SortingServiceProtocol {
 
     func sorted(_ restaurants: [Restaurant], option: SortingOption) -> [Restaurant]
