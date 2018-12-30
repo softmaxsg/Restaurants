@@ -21,7 +21,7 @@ class RestaurantViewCellTests: XCTestCase {
                 name: "Just one of those restaurants",
                 openingState: .preorder,
                 sortingValues: .random(averageProductPrice: 12.5)
-            ), sorting: .averageProductPrice) { }
+            ), sorting: SortingOptionViewModel(option: .averageProductPrice)) { }
         
         cell.configure(with: viewModel)
         adjustSize(for: cell)
@@ -37,7 +37,7 @@ class RestaurantViewCellTests: XCTestCase {
                 name: "My favorite restaurant",
                 openingState: .open,
                 sortingValues: .random(minimalCost: 7.5)
-        ), sorting: .minimalCost) { }
+        ), sorting: SortingOptionViewModel(option: .minimalCost)) { }
         
         cell.configure(with: viewModel)
         adjustSize(for: cell)

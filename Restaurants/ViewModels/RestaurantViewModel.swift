@@ -28,17 +28,17 @@ final class RestaurantViewModel: RestaurantViewModelProtocol {
     
     private let toggleFavoriteStateCallback: () -> Void
 
-    init(_ restaurant: Restaurant, sorting option: SortingOption, toggleFavoriteStateCallback: @escaping () -> Void) {
+    init(_ restaurant: Restaurant, sorting option: SortingOptionViewModelProtocol, toggleFavoriteStateCallback: @escaping () -> Void) {
         self.toggleFavoriteStateCallback = toggleFavoriteStateCallback
 
         isFavorite = restaurant.isFavorite
         name = restaurant.name
         openingState = restaurant.openingState.displayValue
 
-        sortingOptionLabel = option.rawValue
+        sortingOptionLabel = option.title
         let sortingValues = restaurant.sortingValues
         
-        switch option {
+        switch option.value {
         case .bestMatch:
             sortingOptionValue = RestaurantViewModel.sortingValuesFormatter().string(from: NSNumber(value: sortingValues.bestMatch))!
         case .newest:

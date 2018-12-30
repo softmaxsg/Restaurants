@@ -112,7 +112,7 @@ extension RestaurantListViewModel {
         restaurants = sortingService.sorted(restaurants, option: sortingOption)
         
         let items = restaurants.map { restaurant -> RestaurantViewModel in
-            return RestaurantViewModel(restaurant, sorting: sortingOption) { [weak self] in
+            return RestaurantViewModel(restaurant, sorting: SortingOptionViewModel(option: sortingOption)) { [weak self] in
                 self?.toggleFavoriteState(for: restaurant.name)
             }
         }
