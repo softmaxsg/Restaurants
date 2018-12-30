@@ -73,6 +73,7 @@
 		D899D34721D82D6800228761 /* RestaurantViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D34621D82D6800228761 /* RestaurantViewCell.swift */; };
 		D899D34921D8334E00228761 /* SortingOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D34821D8334E00228761 /* SortingOption.swift */; };
 		D899D34B21D8343600228761 /* SortingSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D34A21D8343600228761 /* SortingSelectorViewModel.swift */; };
+		D899D35121D83E9000228761 /* SortingSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35021D83E9000228761 /* SortingSelectorController.swift */; };
 		D899D35321D843C600228761 /* SortingOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35221D843C600228761 /* SortingOptionViewModel.swift */; };
 		D899D35521D8496300228761 /* SortingOptionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35421D8496300228761 /* SortingOptionViewModelTests.swift */; };
 		D899D35721D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35621D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift */; };
@@ -160,6 +161,7 @@
 		D899D34621D82D6800228761 /* RestaurantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewCell.swift; sourceTree = "<group>"; };
 		D899D34821D8334E00228761 /* SortingOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOption.swift; sourceTree = "<group>"; };
 		D899D34A21D8343600228761 /* SortingSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModel.swift; sourceTree = "<group>"; };
+		D899D35021D83E9000228761 /* SortingSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorController.swift; sourceTree = "<group>"; };
 		D899D35221D843C600228761 /* SortingOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOptionViewModel.swift; sourceTree = "<group>"; };
 		D899D35421D8496300228761 /* SortingOptionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOptionViewModelTests.swift; sourceTree = "<group>"; };
 		D899D35621D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModelDelegateMock.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			children = (
 				D899D33F21D80C3600228761 /* RestaurantsViewController.swift */,
 				D899D34621D82D6800228761 /* RestaurantViewCell.swift */,
+				D899D35021D83E9000228761 /* SortingSelectorController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				D899D33521D7D90100228761 /* Restaurant.swift in Sources */,
 				D899D2E421D583F400228761 /* RandomAccessCollection+Helpers.swift in Sources */,
 				D899D2F921D5955D00228761 /* Cancellable.swift in Sources */,
+				D899D35121D83E9000228761 /* SortingSelectorController.swift in Sources */,
 				D899D34321D80D5C00228761 /* RestaurantsAssembly.swift in Sources */,
 				D899D2BD21D5220300228761 /* SortingValues.swift in Sources */,
 				D899D2B921D5215A00228761 /* OpeningState.swift in Sources */,

@@ -2,7 +2,7 @@
 //  Copyright © 2018 Vitaly Chupryk. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 final class RestaurantsAssembly {
     
@@ -14,6 +14,11 @@ final class RestaurantsAssembly {
             filteringService: FilteringService(),
             favoritesService: FavoritesService(storageService: FavoritesStorageService())
         )
+    }
+    
+    func sortingSelectorViewController(with viewModel: SortingSelectorViewModelProtocol) -> UIViewController {
+        let sortingSelectorController = SortingSelectorController(viewModel: viewModel)
+        return sortingSelectorController.viewController
     }
     
 }

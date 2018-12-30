@@ -35,6 +35,11 @@ final class RestaurantsViewController: UITableViewController {
         return cell
     }
     
+    @IBAction func sortingButtonDidTap() {
+        let controller = assembly.sortingSelectorViewController(with: viewModel.sortingSelectorViewModel)
+        present(controller, animated: true)
+    }
+    
 }
 
 extension RestaurantsViewController: RestaurantListViewModelDelegate {
