@@ -78,6 +78,7 @@
 		D899D35521D8496300228761 /* SortingOptionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35421D8496300228761 /* SortingOptionViewModelTests.swift */; };
 		D899D35721D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35621D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift */; };
 		D899D35921D84A6E00228761 /* SortingSelectorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35821D84A6E00228761 /* SortingSelectorViewModelTests.swift */; };
+		D899D35B21D8544400228761 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35A21D8544300228761 /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		D899D35421D8496300228761 /* SortingOptionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOptionViewModelTests.swift; sourceTree = "<group>"; };
 		D899D35621D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		D899D35821D84A6E00228761 /* SortingSelectorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModelTests.swift; sourceTree = "<group>"; };
+		D899D35A21D8544300228761 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,6 +414,7 @@
 		D899D33E21D80C0800228761 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D899D35A21D8544300228761 /* ErrorView.swift */,
 				D899D33F21D80C3600228761 /* RestaurantsViewController.swift */,
 				D899D34621D82D6800228761 /* RestaurantViewCell.swift */,
 				D899D35021D83E9000228761 /* SortingSelectorController.swift */,
@@ -537,6 +540,7 @@
 				D899D30721D599A000228761 /* Constants.swift in Sources */,
 				D899D2C021D5299E00228761 /* Decimal+Money.swift in Sources */,
 				D899D32521D6D86100228761 /* FavoriteRestaurant.swift in Sources */,
+				D899D35B21D8544400228761 /* ErrorView.swift in Sources */,
 				D899D31621D67E7600228761 /* SortingService.swift in Sources */,
 				D899D2DC21D581C200228761 /* RestaurantListViewModel.swift in Sources */,
 				D899D2B721D51EDE00228761 /* RestaurantDetails.swift in Sources */,

@@ -59,6 +59,12 @@ final class URLSessionMock: URLSessionProtocol {
             let statusCode: Int
 
             do {
+                // Here a delay can be added in order to see the loading state in the restaurants view comtroller
+                // like Thread.sleep(forTimeInterval: 1)
+
+                // Also an error can be thrown in order to see the error state in the restaurants view comtroller
+                // like throw URLSessionDataTaskMockError.badRequest
+                
                 result.data = try Data(contentsOf: url)
                 result.error = nil
                 statusCode = 200
