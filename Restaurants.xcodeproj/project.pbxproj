@@ -79,6 +79,8 @@
 		D899D35721D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35621D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift */; };
 		D899D35921D84A6E00228761 /* SortingSelectorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35821D84A6E00228761 /* SortingSelectorViewModelTests.swift */; };
 		D899D35B21D8544400228761 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35A21D8544300228761 /* ErrorView.swift */; };
+		D899D35E21D85F8200228761 /* SortingSelectorViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35D21D85F8200228761 /* SortingSelectorViewModelMock.swift */; };
+		D899D36021D8604C00228761 /* SortingSelectorControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35F21D8604C00228761 /* SortingSelectorControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,8 @@
 		D899D35621D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		D899D35821D84A6E00228761 /* SortingSelectorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModelTests.swift; sourceTree = "<group>"; };
 		D899D35A21D8544300228761 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		D899D35D21D85F8200228761 /* SortingSelectorViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModelMock.swift; sourceTree = "<group>"; };
+		D899D35F21D8604C00228761 /* SortingSelectorControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +237,7 @@
 				D899D2C121D567A900228761 /* Models */,
 				D899D2EB21D58C0500228761 /* Services */,
 				D899D2DD21D581C900228761 /* ViewModels */,
+				D899D35C21D85EEC00228761 /* Views */,
 				D899D2AC21D5182D00228761 /* Info.plist */,
 			);
 			path = RestaurantsTests;
@@ -341,6 +346,7 @@
 				D899D30F21D65E0D00228761 /* RestaurantListViewModelDelegateMock.swift */,
 				D899D2E821D5892B00228761 /* RestaurantViewModel+Helpers.swift */,
 				D899D35621D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift */,
+				D899D35D21D85F8200228761 /* SortingSelectorViewModelMock.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -428,6 +434,14 @@
 				D899D34221D80D5C00228761 /* RestaurantsAssembly.swift */,
 			);
 			path = Assemblies;
+			sourceTree = "<group>";
+		};
+		D899D35C21D85EEC00228761 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D899D35F21D8604C00228761 /* SortingSelectorControllerTests.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -574,6 +588,7 @@
 				D899D2D621D5719100228761 /* SortingValuesDecodingTests.swift in Sources */,
 				D899D35921D84A6E00228761 /* SortingSelectorViewModelTests.swift in Sources */,
 				D899D35721D84A0000228761 /* SortingSelectorViewModelDelegateMock.swift in Sources */,
+				D899D36021D8604C00228761 /* SortingSelectorControllerTests.swift in Sources */,
 				D899D33D21D7FE9A00228761 /* FavoritesStorageServiceMock.swift in Sources */,
 				D899D33321D6F64A00228761 /* FavoritesServiceMock.swift in Sources */,
 				D899D32F21D6EE1600228761 /* FavoritesServiceTests.swift in Sources */,
@@ -603,6 +618,7 @@
 				D899D31821D6841E00228761 /* SortingServiceTests.swift in Sources */,
 				D899D30E21D6516000228761 /* RestaurantsProviderMock.swift in Sources */,
 				D899D2C821D5686200228761 /* DecodingTester.swift in Sources */,
+				D899D35E21D85F8200228761 /* SortingSelectorViewModelMock.swift in Sources */,
 				D899D2EF21D58C5C00228761 /* RestaurantsProviderTests.swift in Sources */,
 				D899D2CA21D5686200228761 /* JSONDecoder+Helpers.swift in Sources */,
 				D899D32921D6DA4300228761 /* FavoriteRestaurantCodingTests.swift in Sources */,
