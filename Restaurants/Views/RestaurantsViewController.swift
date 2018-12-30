@@ -17,6 +17,8 @@ final class RestaurantsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureSearchController()
         viewModel.loadRestaurants()
     }
     
@@ -50,6 +52,27 @@ extension RestaurantsViewController: RestaurantListViewModelDelegate {
     
     func itemsLoadDidFail(with error: Error) {
         tableView.reloadData()
+    }
+    
+}
+
+extension RestaurantsViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.filteringText = searchController.searchBar.text ?? ""
+    }
+    
+}
+
+extension RestaurantsViewController {
+    
+    private func configureSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Filter restaurants"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
 }
