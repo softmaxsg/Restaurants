@@ -4,15 +4,7 @@
 
 import UIKit
 
-final class RestaurantsViewController: UITableViewController {
-
-    private enum State {
-        
-        case loading
-        case data
-        case error(message: String)
-        
-    }
+final class RestaurantsViewController: UITableViewController, StateBackgroundViewSupport {
 
     private enum CellIdentifier: String {
         
@@ -27,7 +19,7 @@ final class RestaurantsViewController: UITableViewController {
 
     private let assembly = RestaurantsAssembly()
     private lazy var viewModel = assembly.restaurantsViewModel(delegate: self)
-    private var currentState = State.loading
+    var currentState = DataState.loading
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +31,7 @@ final class RestaurantsViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let stateView = configureStateView()
-        tableView.backgroundView = stateView
-        return stateView == nil ? 1 : 0
+        return setStateBackgroundView(in: tableView) == nil ? 1 : 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,7 +59,7 @@ final class RestaurantsViewController: UITableViewController {
 extension RestaurantsViewController: RestaurantListViewModelDelegate {
     
     func itemsDidUpdate() {
-        currentState = .data
+        currentState = .data(count: viewModel.itemsCount)
         updateControls()
         
         tableView.reloadData()
@@ -101,18 +91,6 @@ extension RestaurantsViewController {
         searchController.searchBar.placeholder = "Filter restaurants"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-    }
-    
-    private func configureStateView() -> UIView? {
-        switch currentState {
-        case .loading:
-            return loadingBackgroundView
-        case .data:
-            return viewModel.itemsCount <= 0 ? emptyBackgroundView : nil
-        case .error(let message):
-            errorBackgroundView?.display(details: message)
-            return errorBackgroundView
-        }
     }
     
     private func updateControls() {
