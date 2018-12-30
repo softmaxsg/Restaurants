@@ -11,16 +11,24 @@ extension SortingValues {
     private static let costRange = 0...100000
     private static let distanceRange = 0...Int.max
     
-    static func random() -> SortingValues {
+    static func random(
+        bestMatch: Double = .random(in: SortingValues.rankRange),
+        newest: Double = .random(in: SortingValues.rankRange),
+        averageRating: Double = .random(in: rankRange),
+        distance: Int = .random(in: distanceRange),
+        popularity: Double = .random(in: SortingValues.rankRange),
+        averageProductPrice: Decimal = Decimal(cents: .random(in: costRange)),
+        deliveryCost: Decimal = Decimal(cents: .random(in: costRange)),
+        minimalCost: Decimal = Decimal(cents: .random(in: costRange))) -> SortingValues {
         return SortingValues(
-            bestMatch: .random(in: SortingValues.rankRange),
-            newest: .random(in: SortingValues.rankRange),
-            averageRating: .random(in: rankRange),
-            distance: .random(in: distanceRange),
-            popularity: .random(in: SortingValues.rankRange),
-            averageProductPrice: Decimal(cents: .random(in: costRange)),
-            deliveryCost: Decimal(cents: .random(in: costRange)),
-            minimalCost: Decimal(cents: .random(in: costRange))
+            bestMatch: bestMatch,
+            newest: newest,
+            averageRating: averageRating,
+            distance: distance,
+            popularity: popularity,
+            averageProductPrice: averageProductPrice,
+            deliveryCost: deliveryCost,
+            minimalCost: minimalCost
         )
     }
     
