@@ -32,6 +32,8 @@ final class RestaurantsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        RestaurantViewCell.register(in: tableView, with: CellIdentifier.restaurant.rawValue)
+        
         updateControls()
         viewModel.loadRestaurants()
     }

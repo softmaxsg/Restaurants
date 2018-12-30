@@ -35,3 +35,13 @@ final class RestaurantViewCell: UITableViewCell {
     
 }
 
+extension RestaurantViewCell {
+    
+    class func register(in tableView: UITableView, with identifier: String) {
+        tableView.register(
+            UINib(nibName: "RestaurantViewCell", bundle: nil),
+            forCellReuseIdentifier: identifier
+        )
+    }
+    
+}

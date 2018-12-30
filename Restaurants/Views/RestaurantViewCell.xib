@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Restaurant" rowHeight="102" id="5HS-ZY-Fsl" customClass="RestaurantViewCell" customModule="Restaurants" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5HS-ZY-Fsl" id="KmZ-P1-2c2">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="101.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zq6-wn-04S">
+                        <rect key="frame" x="16" y="11" width="343" height="22"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bUS-7h-nM5">
+                        <rect key="frame" x="16" y="41" width="343" height="20.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorting Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxa-Bf-xMu">
+                                <rect key="frame" x="0.0" y="0.0" width="98" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Sorting Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdU-rW-ET5">
+                                <rect key="frame" x="106" y="0.0" width="237" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPG-fd-nuu">
+                        <rect key="frame" x="16" y="69.5" width="311" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xkk-BI-nPd">
+                        <rect key="frame" x="327" y="61.5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="1TD-w8-ucY"/>
+                            <constraint firstAttribute="height" constant="40" id="oGb-YP-XxX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                        <state key="normal" title="☆">
+                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected" title="★"/>
+                        <connections>
+                            <action selector="favoriteButtonDidTap" destination="5HS-ZY-Fsl" eventType="touchUpInside" id="EhF-XD-Vog"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="bUS-7h-nM5" secondAttribute="trailing" id="40c-cd-gGO"/>
+                    <constraint firstItem="HPG-fd-nuu" firstAttribute="leading" secondItem="KmZ-P1-2c2" secondAttribute="leadingMargin" id="6wX-dw-uD0"/>
+                    <constraint firstItem="HPG-fd-nuu" firstAttribute="top" secondItem="bUS-7h-nM5" secondAttribute="bottom" constant="8" id="Eqj-e6-73U"/>
+                    <constraint firstItem="Xkk-BI-nPd" firstAttribute="top" secondItem="bUS-7h-nM5" secondAttribute="bottom" id="Qks-4k-5bP"/>
+                    <constraint firstItem="Zq6-wn-04S" firstAttribute="leading" secondItem="KmZ-P1-2c2" secondAttribute="leadingMargin" id="UST-Tw-egB"/>
+                    <constraint firstAttribute="bottom" secondItem="Xkk-BI-nPd" secondAttribute="bottom" id="Yi2-aE-edv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Zq6-wn-04S" secondAttribute="trailing" id="bZu-Mi-UJ2"/>
+                    <constraint firstItem="bUS-7h-nM5" firstAttribute="leading" secondItem="KmZ-P1-2c2" secondAttribute="leadingMargin" id="oTE-M2-66o"/>
+                    <constraint firstItem="Xkk-BI-nPd" firstAttribute="leading" secondItem="HPG-fd-nuu" secondAttribute="trailing" id="orb-Da-mhH"/>
+                    <constraint firstItem="bUS-7h-nM5" firstAttribute="top" secondItem="Zq6-wn-04S" secondAttribute="bottom" constant="8" id="rVP-n6-lW1"/>
+                    <constraint firstAttribute="trailing" secondItem="Xkk-BI-nPd" secondAttribute="trailing" constant="8" id="sf0-Yc-zqR"/>
+                    <constraint firstItem="Zq6-wn-04S" firstAttribute="top" secondItem="KmZ-P1-2c2" secondAttribute="topMargin" id="xav-1j-73J"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="favoriteButton" destination="Xkk-BI-nPd" id="3fd-zy-2nB"/>
+                <outlet property="nameLabel" destination="Zq6-wn-04S" id="bzg-ME-ojO"/>
+                <outlet property="openingStateLabel" destination="HPG-fd-nuu" id="O5M-nd-587"/>
+                <outlet property="sortingTypeLabel" destination="jxa-Bf-xMu" id="txX-We-oSO"/>
+                <outlet property="sortingValueLabel" destination="qdU-rW-ET5" id="q6b-dg-nyX"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

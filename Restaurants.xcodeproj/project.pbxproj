@@ -81,6 +81,7 @@
 		D899D35B21D8544400228761 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35A21D8544300228761 /* ErrorView.swift */; };
 		D899D35E21D85F8200228761 /* SortingSelectorViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35D21D85F8200228761 /* SortingSelectorViewModelMock.swift */; };
 		D899D36021D8604C00228761 /* SortingSelectorControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D35F21D8604C00228761 /* SortingSelectorControllerTests.swift */; };
+		D899D36821D8640D00228761 /* RestaurantViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D899D36721D8640D00228761 /* RestaurantViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,7 @@
 		D899D35A21D8544300228761 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		D899D35D21D85F8200228761 /* SortingSelectorViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorViewModelMock.swift; sourceTree = "<group>"; };
 		D899D35F21D8604C00228761 /* SortingSelectorControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingSelectorControllerTests.swift; sourceTree = "<group>"; };
+		D899D36721D8640D00228761 /* RestaurantViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +425,7 @@
 				D899D35A21D8544300228761 /* ErrorView.swift */,
 				D899D33F21D80C3600228761 /* RestaurantsViewController.swift */,
 				D899D34621D82D6800228761 /* RestaurantViewCell.swift */,
+				D899D36721D8640D00228761 /* RestaurantViewCell.xib */,
 				D899D35021D83E9000228761 /* SortingSelectorController.swift */,
 			);
 			path = Views;
@@ -530,6 +533,7 @@
 				D899D2A021D5182C00228761 /* LaunchScreen.storyboard in Resources */,
 				D899D29D21D5182C00228761 /* Assets.xcassets in Resources */,
 				D899D29B21D5182B00228761 /* Main.storyboard in Resources */,
+				D899D36821D8640D00228761 /* RestaurantViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
