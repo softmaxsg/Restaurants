@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8469BD321EAB360002BEE8D /* DataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8469BD221EAB360002BEE8D /* DataState.swift */; };
 		D899D29621D5182B00228761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899D29521D5182B00228761 /* AppDelegate.swift */; };
 		D899D29B21D5182B00228761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D899D29921D5182B00228761 /* Main.storyboard */; };
 		D899D29D21D5182C00228761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D899D29C21D5182C00228761 /* Assets.xcassets */; };
@@ -103,6 +104,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8469BD221EAB360002BEE8D /* DataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataState.swift; sourceTree = "<group>"; };
 		D899D29221D5182B00228761 /* Restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D899D29521D5182B00228761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D899D29A21D5182B00228761 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 		D899D2DA21D5819A00228761 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D8469BD221EAB360002BEE8D /* DataState.swift */,
 				D899D2DB21D581C200228761 /* RestaurantListViewModel.swift */,
 				D899D2E021D582B500228761 /* RestaurantViewModel.swift */,
 				D899D35221D843C600228761 /* SortingOptionViewModel.swift */,
@@ -619,6 +622,7 @@
 				D899D2FA21D5955D00228761 /* Result.swift in Sources */,
 				D899D33521D7D90100228761 /* Restaurant.swift in Sources */,
 				D899D2E421D583F400228761 /* RandomAccessCollection+Helpers.swift in Sources */,
+				D8469BD321EAB360002BEE8D /* DataState.swift in Sources */,
 				D899D2F921D5955D00228761 /* Cancellable.swift in Sources */,
 				D899D35121D83E9000228761 /* SortingSelectorController.swift in Sources */,
 				D899D34321D80D5C00228761 /* RestaurantsAssembly.swift in Sources */,

@@ -6,8 +6,7 @@ import Foundation
 
 protocol RestaurantListViewModelDelegate: class {
     
-    func itemsDidUpdate()
-    func itemsLoadDidFail(with error: Error)
+    func stateDidChange()
     
 }
 
@@ -18,7 +17,7 @@ protocol RestaurantListViewModelProtocol {
     
     var sortingSelectorViewModel: SortingSelectorViewModelProtocol { get }
 
-    var itemsCount: Int { get }
+    var currentState: DataState { get }
     func item(at index: Int) throws -> RestaurantViewModelProtocol
     
     func loadRestaurants()
@@ -56,13 +55,14 @@ final class RestaurantListViewModel: RestaurantListViewModelProtocol {
     
     private(set) lazy var sortingSelectorViewModel: SortingSelectorViewModelProtocol = SortingSelectorViewModel(delegate: self)
 
-    var itemsCount: Int { return items.count }
-    
+    private(set) var currentState = DataState.data(count: 0) { didSet { delegate?.stateDidChange() } }
+
     func item(at index: Int) throws -> RestaurantViewModelProtocol {
         return try items.item(at: index)
     }
     
     func loadRestaurants() {
+        currentState = .loading        
         restaurantsProvider.loadAll { [weak self] result in
             self?.operationQueue.addOperation {
                 switch result {
@@ -119,13 +119,13 @@ extension RestaurantListViewModel {
         
         OperationQueue.main.addOperation {
             self.items = items
-            self.delegate?.itemsDidUpdate()
+            self.currentState = .data(count: items.count)
         }
     }
     
     private func handleLoadingError(_ error: Error) {
         OperationQueue.main.addOperation {
-            self.delegate?.itemsLoadDidFail(with: error)
+            self.currentState = .error(message: error.localizedDescription)
         }
     }
     

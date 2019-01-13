@@ -82,28 +82,34 @@ final class RestaurantListViewModelTests: XCTestCase {
     
     func testEmptyList() {
         let viewModel = self.viewModel(with: .success([]))
-        XCTAssertEqual(viewModel.itemsCount, 0)
+        
+        switch viewModel.currentState {
+        case .data(let count): XCTAssertEqual(count, 0)
+        default: XCTFail("Invalid state")
+        }
+        
     }
     
     func testLoadingFailed() {
         let viewModel = self.viewModel(with: .failure(MockError.some))
-        XCTAssertEqual(viewModel.itemsCount, 0)
+        
+        switch viewModel.currentState {
+        case .error(let message): XCTAssertEqual(message, MockError.some.localizedDescription)
+        default: XCTFail("Invalid state")
+        }
     }
 
     func testInvalidIndex() {
         let viewModel = self.viewModel(with: .success(initialRestaurants))
 
-        XCTAssertThrowsError(try viewModel.item(at: viewModel.itemsCount), "Has to throw an error") { error in
+        XCTAssertThrowsError(try viewModel.item(at: initialRestaurants.count), "Has to throw an error") { error in
             XCTAssertEqual(error as? RandomAccessCollectionError, RandomAccessCollectionError.indexOutOfBounds)
         }
     }
     
     func testFavoritesServiceDelegate() {
         var expectation = self.expectation(description: "RestaurantListViewModel.loadRestaurants")
-        let delegate = RestaurantListViewModelDelegateMock(
-            itemsDidUpdate: { expectation.fulfill() },
-            itemsUpdateDidFail: { _ in XCTFail("Should be called in this test") }
-        )
+        let delegate = RestaurantListViewModelDelegateMock { expectation.fulfill() }
 
         let favoritesServiceExpectation = self.expectation(description: "FavoritesService.addDelegate")
         let favoritesService = FavoritesServiceMock(
@@ -167,9 +173,9 @@ final class RestaurantListViewModelTests: XCTestCase {
         )
         
         let viewModel = self.viewModel(with: .success(initialRestaurants), favoritesService: favoritesService)
-        expectation.expectedFulfillmentCount = viewModel.itemsCount
+        expectation.expectedFulfillmentCount = initialRestaurants.count
         
-        (0..<viewModel.itemsCount).forEach { index in
+        (0..<initialRestaurants.count).forEach { index in
             let item = try! viewModel.item(at: index)
             item.toggleFavoriteState()
         }
@@ -207,25 +213,20 @@ extension RestaurantListViewModelTests {
                            line: UInt = #line) -> RestaurantListViewModel {
         var expectation = self.expectation(description: "RestaurantListViewModel.loadRestaurants")
 
-        let provider = mockedRestaurantsProvider(with: result.map { $0.map(RestaurantDetails.init) })
-        let defaultDelegate = RestaurantListViewModelDelegateMock(
-            itemsDidUpdate: {
-                XCTAssertTrue(OperationQueue.current! === OperationQueue.main, "Delegate method has to be called on the main thread")
-                switch result {
-                case .success: expectation.fulfill()
-                case .failure: XCTFail("Should be called in this test", file: file, line: line)
-                }
-            },
-            itemsUpdateDidFail: { error in
-                XCTAssertTrue(OperationQueue.current! === OperationQueue.main, "Delegate method has to be called on the main thread")
-                switch result {
-                case .success: XCTFail("Should be called in this test", file: file, line: line)
-                case .failure: expectation.fulfill()
-                }
-            }
-        )
+        var viewModel: RestaurantListViewModel!
         
-        let viewModel = RestaurantListViewModel(
+        let provider = mockedRestaurantsProvider(with: result.map { $0.map(RestaurantDetails.init) })
+        let defaultDelegate = RestaurantListViewModelDelegateMock {
+            XCTAssertTrue(OperationQueue.current! === OperationQueue.main, "Delegate method has to be called on the main thread")
+            switch viewModel.currentState {
+            case .loading: return // Expectation should not be fulfilled in this case
+            case .data: XCTAssertNotNil(result.value, file: file, line: line)
+            case .error: XCTAssertNotNil(result.error, file: file, line: line)
+            }
+            expectation.fulfill()
+        }
+        
+        viewModel = RestaurantListViewModel(
             delegate: delegate ?? defaultDelegate,
             restaurantsProvider: provider,
             sortingService: sortingService ?? SortingServiceMock.empty,
@@ -251,7 +252,12 @@ extension RestaurantListViewModelTests {
     }
     
     private func compareItems(in viewModel: RestaurantListViewModel, with restaurants: [Restaurant], file: StaticString = #file, line: UInt = #line) {
-        XCTAssertEqual(viewModel.itemsCount, restaurants.count, "RestaurantViewModel contains \(viewModel.itemsCount) items but expected \(restaurants.count)", file: file, line: line)
+        switch viewModel.currentState {
+        case .data(let itemsCount):
+            XCTAssertEqual(itemsCount, restaurants.count, "RestaurantViewModel contains \(itemsCount) items but expected \(restaurants.count)", file: file, line: line)
+        default:
+            XCTFail("RestaurantViewModel's state is invalid", file: file, line: line)
+        }
         
         for (index, restaurant) in restaurants.enumerated() {
             let item = try! viewModel.item(at: index)

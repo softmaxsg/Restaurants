@@ -7,24 +7,16 @@ import Foundation
 
 final class RestaurantListViewModelDelegateMock: RestaurantListViewModelDelegate {
     
-    typealias ItemsDidUpdateImpl = () -> Void
-    typealias ItemsUpdateDidFailImpl = (Error) -> Void
+    typealias StateDidChangeImpl = () -> Void
 
-    private let itemsDidUpdateImpl: ItemsDidUpdateImpl
-    private let itemsUpdateDidFailImpl: ItemsUpdateDidFailImpl
+    private let stateDidChangeImpl: StateDidChangeImpl
 
-    init(itemsDidUpdate itemsDidUpdateImpl: @escaping ItemsDidUpdateImpl,
-         itemsUpdateDidFail itemsUpdateDidFailImpl: @escaping ItemsUpdateDidFailImpl) {
-        self.itemsDidUpdateImpl = itemsDidUpdateImpl
-        self.itemsUpdateDidFailImpl = itemsUpdateDidFailImpl
+    init(stateDidChange stateDidChangeImpl: @escaping StateDidChangeImpl) {
+        self.stateDidChangeImpl = stateDidChangeImpl
     }
     
-    func itemsDidUpdate() {
-        itemsDidUpdateImpl()
-    }
-    
-    func itemsLoadDidFail(with error: Error) {
-        itemsUpdateDidFailImpl(error)
+    func stateDidChange() {
+        stateDidChangeImpl()
     }
 
 }

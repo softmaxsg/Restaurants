@@ -4,14 +4,6 @@
 
 import UIKit
 
-enum DataState {
-    
-    case loading
-    case data(count: Int)
-    case error(message: String)
-    
-}
-
 protocol StateBackgroundViewSupport {
     
     var loadingBackgroundView: UIView? { get }

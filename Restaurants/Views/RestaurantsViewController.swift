@@ -19,7 +19,7 @@ final class RestaurantsViewController: UITableViewController, StateBackgroundVie
 
     private let assembly = RestaurantsAssembly()
     private lazy var viewModel = assembly.restaurantsViewModel(delegate: self)
-    var currentState = DataState.loading
+    var currentState: DataState { return viewModel.currentState }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,12 @@ final class RestaurantsViewController: UITableViewController, StateBackgroundVie
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemsCount
+        switch currentState {
+        case .data(let count):
+            return count
+        default:
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,17 +63,8 @@ final class RestaurantsViewController: UITableViewController, StateBackgroundVie
 
 extension RestaurantsViewController: RestaurantListViewModelDelegate {
     
-    func itemsDidUpdate() {
-        currentState = .data(count: viewModel.itemsCount)
+    func stateDidChange() {
         updateControls()
-        
-        tableView.reloadData()
-    }
-    
-    func itemsLoadDidFail(with error: Error) {
-        currentState = .error(message: error.localizedDescription)
-        updateControls()
-        
         tableView.reloadData()
     }
     
